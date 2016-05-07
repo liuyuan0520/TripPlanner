@@ -45,7 +45,7 @@ public class PredictAction extends Action {
         String getAllRoute = request.getParameter("allroutes").trim();
 
         // Get the stop location
-        Route curStop = DAO.getStopInfo(stopId);
+        Route curStop = stopDAO.getStopInfo(stopId);
         request.setAttribute("stopId", stopId);
         request.setAttribute("stopName", curStop.getStopName());
         request.setAttribute("stopLong", curStop.getStopLong());
