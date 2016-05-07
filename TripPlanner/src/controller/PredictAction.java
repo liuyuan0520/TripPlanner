@@ -7,15 +7,27 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import databean.Prediction;
+import databean.Route;
+import model.DAO;
+import model.Model;
 import util.Common;
 
 public class PredictAction extends Action {
+
+    private DAO stopDAO;
+
+    public PredictAction(Model model) {
+        stopDAO = model.getDAO();
+    }
 
     @Override
     public String getName() {
@@ -32,6 +44,14 @@ public class PredictAction extends Action {
 
         String getAllRoute = request.getParameter("allroutes").trim();
 
+        // Get the stop location
+        Route curStop = DAO.getStopInfo(stopId);
+        request.setAttribute("stopId", stopId);
+        request.setAttribute("stopName", curStop.getStopName());
+        request.setAttribute("stopLong", curStop.getStopLong());
+        request.setAttribute("stopLat", curStop.getStopLat());
+
+        List<Prediction> predList = new ArrayList<>();
         if ("true".equals(getAllRoute)) {
             // search for all routes for this stop
 
@@ -40,9 +60,11 @@ public class PredictAction extends Action {
             JSONArray predictions = Common.getPredictions(stopId, route);
             JSONObject jPredict = (JSONObject) predictions.get(0);
             long gapTime = -1;
+            String curTime = null;
+            String predTime = null;
             try {
-                String curTime = ((String) jPredict.get("tmstmp")).trim();
-                String predTime = ((String) jPredict.get("prdtm")).trim();
+                curTime = ((String) jPredict.get("tmstmp")).trim();
+                predTime = ((String) jPredict.get("prdtm")).trim();
                 // 20160506 21:08
                 SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd hh:mm");
 
@@ -59,12 +81,18 @@ public class PredictAction extends Action {
             } else {
                 request.setAttribute("waitTime", "Sorry, this service currently is not available.");
             }
-            request.setAttribute("vid", jPredict.get("vid"));
-            request.setAttribute("rt", jPredict.get("rt"));
 
+            // get the vehicle location
+            JSONObject vehicle = (JSONObject) Common.getVehicle((String) jPredict.get("vid")).get(0);
+            double longitude = (double) vehicle.get("lon");
+            double latitude = (double) vehicle.get("lat");
+
+            Prediction prediction = new Prediction(latitude, longitude, route, direction, (String) jPredict.get("vid"),
+                    String.valueOf(gapTime), predTime);
+            predList.add(prediction);
         }
-
-        return null;
+        request.setAttribute("predList", predList);
+        return "showPrediction.jsp";
     }
 
 }
