@@ -8,22 +8,22 @@ import org.genericdao.DAOException;
 
 public class Model {
 
-    // private StopDAO stopDAO;
+	private DAO dao;
 
-    public Model(ServletConfig config) throws ServletException {
-        try {
-            String jdbcDriver = config.getInitParameter("jdbcDriverName");
-            String jdbcURL = config.getInitParameter("jdbcURL");
+	public Model(ServletConfig config) throws ServletException {
+		try {
+			String jdbcDriver = config.getInitParameter("jdbcDriverName");
+			String jdbcURL = config.getInitParameter("jdbcURL");
 
-            ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
-            // stopDAO = new StopDAO("Stop", pool);
-        } catch (DAOException e) {
-            throw new ServletException(e);
-        }
-    }
+			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
+			dao = new DAO("Stop", pool);
+		} catch (DAOException e) {
+			throw new ServletException(e);
+		}
+	}
 
-    // public StopDAO getStopDAO() {
-    // return stopDAO;
-    // }
+	public DAO getDAO() {
+		return dao;
+	}
 
 }
