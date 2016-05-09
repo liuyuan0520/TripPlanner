@@ -11,7 +11,7 @@
 <body>
 <input type="button" value="click me"/>
 <script>
-	$.post("test.do", {vid:"71C"}, function(d){
+	$.post("test.do", {rt:"71C", dir:"INBOUND"}, function(d){
 		console.log("hahahah");
 	});
 </script>

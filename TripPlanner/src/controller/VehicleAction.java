@@ -15,7 +15,7 @@ public class VehicleAction extends Action {
 
     @Override
     public String getName() {
-        return "vehicle.do";
+        return "vehicle-ajax.do";
     }
 
     @Override
