@@ -59,7 +59,7 @@ public class InitializeAction {
 					String stopLat = stopAsJsonElement.getAsJsonObject().getAsJsonPrimitive("lat").getAsString();
 					route.setStopLat(Double.parseDouble(stopLat));
 					String stopLong = stopAsJsonElement.getAsJsonObject().getAsJsonPrimitive("lon").getAsString();
-					route.setStopLat(Double.parseDouble(stopLong));
+					route.setStopLong(Double.parseDouble(stopLong));
 					try {
 						dao.create(route);
 					} catch (RollbackException e) {
