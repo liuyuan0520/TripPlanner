@@ -25,7 +25,7 @@ public class Controller extends HttpServlet {
         // Action.add(new ManageAction(model));
         // Action.add(new TrackAction(model));
         // Action.add(new RouteAction(model));
-        // Action.add(new TestAction());
+        Action.add(new TestAction());
     }
 
     @Override
