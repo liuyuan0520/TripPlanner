@@ -104,11 +104,11 @@ public class Controller extends HttpServlet {
         }
 
         // TODO!!!
-        if (nextPage.equals("track.ajax")) {
-            System.err.println("nextPage = track.ajax");
-            JSONObject locObj = (JSONObject) request.getAttribute("locObj");
-            System.err.println("locObj == null: " + (locObj == null));
-            setResponse(response, locObj);
+        if (nextPage.equals("vehicle.ajax")) {
+            System.out.println("nextPage = track.ajax");
+            JSONObject locationObj = (JSONObject) request.getAttribute("realLocation");
+            // System.out.println("locObj == null: " + (locObj == null));
+            setResponse(response, locationObj);
             return;
         }
 
