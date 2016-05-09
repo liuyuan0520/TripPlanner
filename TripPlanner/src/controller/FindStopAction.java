@@ -2,6 +2,8 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.genericdao.RollbackException;
+
 import databean.Route;
 import model.DAO;
 import model.Model;
@@ -25,9 +27,14 @@ public class FindStopAction extends Action {
         String routeId = request.getParameter("rt");
         String direction = request.getParameter("dir");
 
-        Route[] stops = stopDAO.getAllStopsByRouteIdandDir(routeId, direction);
-
-        request.setAttribute("stops", stops);
+        Route[] stops;
+        try {
+            stops = stopDAO.getAllStopsByRouteIdandDir(routeId, direction);
+            request.setAttribute("stops", stops);
+        } catch (RollbackException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         return "findStop.ajax";
     }
