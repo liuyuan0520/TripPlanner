@@ -20,12 +20,13 @@ public class Controller extends HttpServlet {
     @Override
     public void init() throws ServletException {
         Model model = new Model(getServletConfig());
-        // Action.add(new InitAction(model));
+        Action.add(new InitializeAction(model));
         // Action.add(new StopNameAction(model));
         // Action.add(new ManageAction(model));
         // Action.add(new TrackAction(model));
         // Action.add(new RouteAction(model));
-        Action.add(new TestAction());
+        Action.add(new TestAction(model));
+
     }
 
     @Override

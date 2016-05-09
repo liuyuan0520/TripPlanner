@@ -15,7 +15,7 @@ public class VehicleAction extends Action {
 
     @Override
     public String getName() {
-        return "vehicle.do";
+        return "vehicle-ajax.do";
     }
 
     @Override
@@ -23,8 +23,11 @@ public class VehicleAction extends Action {
 
         String vid = request.getParameter("vid");
         JSONObject vehicleInfo = (JSONObject) Common.getVehicle(vid).get(0);
-        double lon = (double) vehicleInfo.get("lon");
-        double lat = (double) vehicleInfo.get("lat");
+        double lon = Double.parseDouble(((String) vehicleInfo.get("lon"))
+                .trim());
+        double lat = Double.parseDouble(((String) vehicleInfo.get("lat"))
+                .trim());
+
         JSONObject location = new JSONObject();
         location.put("lat", lat);
         location.put("lon", lon);

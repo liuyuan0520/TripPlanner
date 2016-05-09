@@ -12,7 +12,7 @@ import model.DAO;
 import model.Model;
 import util.Common;
 
-public class InitializeAction {
+public class InitializeAction extends Action {
 
 	private Model model;
 	private DAO dao;
@@ -22,10 +22,12 @@ public class InitializeAction {
 		this.dao = model.getDAO();
 	}
 
+	@Override
 	public String getName() {
 		return "initialize.do";
 	}
 
+	@Override
 	public String perform(HttpServletRequest request) {
 		try {
 			if (dao.getCount() == 0) {
@@ -43,7 +45,6 @@ public class InitializeAction {
 		for (JsonElement routeAsJsonElement : routesArray) {
 			String routeId = routeAsJsonElement.getAsJsonObject().getAsJsonPrimitive("rt").getAsString();
 			String routeName = routeAsJsonElement.getAsJsonObject().getAsJsonPrimitive("rtnm").getAsString();
-
 			JsonArray directionsArray = Common.getDirections(routeId);
 			for (JsonElement directionAsJsonElement : directionsArray) {
 				String direction = directionAsJsonElement.getAsJsonObject().getAsJsonPrimitive("dir").getAsString();
