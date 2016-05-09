@@ -96,11 +96,11 @@ public class Controller extends HttpServlet {
         }
 
         // TODO!!!
-        if (nextPage.equals("stop.ajax")) {
+        if (nextPage.equals("findStops.ajax")) {
             System.err.println("nextPage = stop.ajax");
-            JSONObject stopObj = (JSONObject) request.getAttribute("stopObj");
-            System.err.println("stopObj == null: " + (stopObj == null));
-            setResponse(response, stopObj);
+            JSONObject stopsObj = (JSONObject) request.getAttribute("stops");
+            // System.err.println("stopObj == null: " + (stopObj == null));
+            setResponse(response, stopsObj);
             return;
         }
 

@@ -12,12 +12,22 @@
 <body>
 <input type="button" value="click me" id="test" />
 <script>
+
+
 	$("#test").click(function(){
-		$.post("test.do",{vid: "3225"}, function(d){
-			//d = d.eval();
-			console.log(d.lon);
-			console.log(d.lat);
+		$.post("test.do", {vid:3565}, function(d){
+			console.log(d);
 		});
+		/*
+		// for findstops
+		$.post("test.do",{rt:"71C", dir:"INBOUND"}, function(d){
+		
+			$.each(d.stops, function(index, item) {
+		        console.log(item.stopName);
+		    });		    
+			
+		});
+		*/
 	});
 	
 </script>
