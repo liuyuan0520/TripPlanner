@@ -53,6 +53,7 @@ public class InitializeAction extends Action {
 					Route route = new Route();
 					route.setRouteId(routeId);
 					route.setRouteName(routeName);
+					route.setDirection(direction);
 					String stopId = stopAsJsonElement.getAsJsonObject().getAsJsonPrimitive("stpid").getAsString();
 					route.setStopId(Integer.parseInt(stopId));
 					String stopName = stopAsJsonElement.getAsJsonObject().getAsJsonPrimitive("stpnm").getAsString();

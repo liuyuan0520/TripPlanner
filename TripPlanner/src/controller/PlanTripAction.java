@@ -2,10 +2,13 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
+
+import databean.Plan;
 
 /**
  * 
@@ -29,18 +32,18 @@ public class PlanTripAction {
 			origin = "wean hall";
 		}
 
-		if (departureTime == null) {
-			departureTime = String.valueOf(System.currentTimeMillis() / 1000);
+		departureTime = convertTime(departureTime);
+		if (arrivalTime != null) {
+			arrivalTime = convertTime(arrivalTime);
+			departureTime = null;
 		}
 
-		if (arrivalTime != null) {
-			arrivalTime = departureTime = null;
-		}
+		ArrayList<Plan> plans = getPlans(origin, destination, departureTime, arrivalTime);
 
 		return "results.jsp";
 	}
 
-	public static String convertTime(String time) {
+	private String convertTime(String time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		sdf.setTimeZone(TimeZone.getTimeZone("EST"));
 
@@ -52,5 +55,10 @@ public class PlanTripAction {
 			e.printStackTrace();
 		}
 		return String.valueOf(date.getTime() / 1000);
+	}
+
+	private ArrayList getPlans(String origin, String destination, String depart) {
+
+		return null;
 	}
 }
