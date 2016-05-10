@@ -25,9 +25,9 @@
 
       #panel-wpr {
         position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
+        top: 30;
+        bottom: 70;
+        left: 0;
         right: 0;
         overflow: auto;
       }
@@ -67,7 +67,7 @@
         border-radius: 1px;
       }
 
-      .time {
+/*       .time {
         margin: 0;
         height: 17px;
         border: 1px solid;
@@ -76,9 +76,9 @@
         border-left-color: #999;
         border-bottom-color: #CCC;
         padding: 2px 15px 1px 1px;
-      }
+      } */
 
-      button {
+/*       button {
         border: 1px solid #3079ED;
         color: white;
         background-color: #4D90FE;
@@ -102,7 +102,7 @@
           -moz-transition: all 0.218s;
           -o-transition: all 0.218s;
           transition: all 0.218s;
-          }
+          } */
 
         #info div {
           line-height: 22px;
@@ -129,21 +129,21 @@
     </style>
 
     <script>
-      var directions = new google.maps.DirectionsService();
-      var renderer = new google.maps.DirectionsRenderer();
+/*       var directions = new google.maps.DirectionsService();
+      var renderer = new google.maps.DirectionsRenderer(); */
       var map, transitLayer;
 
       function initialize() {
         var mapOptions = {
           zoom: 14,
-          center: new google.maps.LatLng(51.538551, -0.016633),
+          center: new google.maps.LatLng(40.443518, -79.945757),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        google.maps.event.addDomListener(document.getElementById('go'), 'click',
-        route);
+       /*  google.maps.event.addDomListener(document.getElementById('go'), 'click',
+        route); */
 
         var inputFrom = document.getElementById('from');
         var autocomplete = new google.maps.places.Autocomplete(inputFrom);
@@ -153,20 +153,20 @@
         
         autocomplete.bindTo('bounds', map);
 
-        transitLayer = new google.maps.TransitLayer();
+/*         transitLayer = new google.maps.TransitLayer();
 
         var control = document.getElementById('transit-wpr');
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control); */
 
-        google.maps.event.addDomListener(control, 'click', function() {
+/*         google.maps.event.addDomListener(control, 'click', function() {
           transitLayer.setMap(transitLayer.getMap() ? null : map);
         });
 
         addDepart();
         route();
-      }
+      } */
 
-      function addDepart() {
+/*       function addDepart() {
         var depart = document.getElementById('depart');
         for (var i = 0; i < 24; i++) {
           for (var j = 0; j < 60; j += 15) {
@@ -175,9 +175,9 @@
           depart.innerHTML += '<option>' + x + ':' + y + '</option>';
         }
         }
-      }
+      } */
 
-      function route() {
+/*       function route() {
         var departure = document.getElementById('depart').value;
         var bits = departure.split(':');
         var now = new Date();
@@ -192,9 +192,9 @@
           ms += 24 * 60 * 60 * 1000;
         }
 
-        var departureTime = new Date(ms);
+        var departureTime = new Date(ms); */
 
-        var request = {
+        /* var request = {
           origin: document.getElementById('from').value,
           destination: document.getElementById('to').value,
           travelMode: google.maps.DirectionsTravelMode.TRANSIT,
@@ -216,16 +216,16 @@
             renderer.setPanel(null);
           }
         });
-
+ */
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
-    <div id="transit-wpr">
+<!--     <div id="transit-wpr">
       <button id="transit">Toggle transit layer</button>
-    </div>
+    </div> -->
     <div id="map"></div>
     <div id="panel-wpr">
       <div id="info">

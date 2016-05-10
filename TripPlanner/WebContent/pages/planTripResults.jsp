@@ -193,7 +193,7 @@
           provideRouteAlternatives: true,
           transitOptions: {
             departureTime: departureTime,
-            arrivalTime: arrivalTime
+           /*  arrivalTime: arrivalTime */
           }
         };
 
