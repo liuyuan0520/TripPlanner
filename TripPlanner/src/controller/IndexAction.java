@@ -124,7 +124,8 @@ public class IndexAction extends Action {
             predList.add(prediction);
         }
 
-        return "index.jsp";
+        return "searchNextBus.jsp";
+
     }
 
 }

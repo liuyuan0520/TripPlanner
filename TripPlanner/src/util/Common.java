@@ -197,6 +197,36 @@ public class Common {
         return null;
     }
 
+    public static JsonArray getGooglePlans(String origin, String destination, String departure, String arrival) {
+        HttpURLConnection connection = null;
+        StringBuilder sb = new StringBuilder(
+                "https://maps.googleapis.com/maps/api/directions/json?mode=transit&alternatives=true&origin=" + origin
+                        + "&destination=" + destination);
+        if (arrival != null) {
+            sb.append("&arrival_time=" + arrival);
+        }
+        if (departure != null) {
+            sb.append("&departure_time=" + departure);
+        }
+
+        URL url;
+        try {
+            url = new URL(sb.toString());
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            JsonArray plans = new JsonParser().parse(getStringFromWeb(connection)).getAsJsonObject()
+                    .getAsJsonArray("routes");
+            return plans;
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * get response from the API through the connection
      * @param connection
@@ -232,8 +262,6 @@ public class Common {
     }
 
     public static JsonArray getDirections(String routeId) {
-
-        // http://[host:port]/bustime/api/[version]/getdirections
         HttpURLConnection connection = null;
         URL url = null;
         try {
