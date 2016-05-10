@@ -1,18 +1,26 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.genericdao.RollbackException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import databean.Prediction;
 import databean.Route;
 import model.DAO;
 import model.Model;
+import util.Common;
 
 public class IndexAction extends Action {
 
@@ -62,7 +70,7 @@ public class IndexAction extends Action {
         }
         request.setAttribute("routeId", routeArr);
         request.setAttribute("routeName", nameArr);
-        /*
+
         // get nearby bus and bus stop
         // NSH : 40.443518, -79.945757
         // Step1 get nearby stops
@@ -89,36 +97,36 @@ public class IndexAction extends Action {
                 predTime = ((String) jPredict.get("prdtm")).trim();
                 // 20160506 21:08
                 SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd hh:mm");
-        
+
                 long curMilli = sdFormat.parse(curTime).getTime();
                 long predMilli = sdFormat.parse(predTime).getTime();
                 gapTime = (predMilli - curMilli) / (1000 * 60);
-        
             } catch (ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
             if (gapTime != -1) {
                 request.setAttribute("waitTime", gapTime);
             } else {
                 request.setAttribute("waitTime", "Sorry, this service currently is not available.");
             }
-        
+
             String dir = (String) jPredict.get("rtdir");
-        
+
             // get the vehicle location
             JSONObject vehicle = (JSONObject) Common.getVehicle((String) jPredict.get("vid")).get(0);
             double lon = Double.parseDouble(((String) vehicle.get("lon"))
                     .trim());
             double lat = Double.parseDouble(((String) vehicle.get("lat"))
                     .trim());
-        
+
             Prediction prediction = new Prediction(lat, lon, routeId, dir,
                     (String) jPredict.get("vid"),
                     String.valueOf(gapTime), predTime);
             predList.add(prediction);
         }
-        */
+        System.out.println(predList.size());
+
         return "pages/searchNextBus.jsp";
 
     }
