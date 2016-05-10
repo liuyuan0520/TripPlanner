@@ -147,7 +147,7 @@
                              		<tbody>
                                 		<tr>
 											<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "INBOUND" checked = "checked">InBound
+      											<input type="radio" name="bound" value = "INBOUND">InBound
     										</label></td>
     										<td><label class="radio-inline">
       											<input type="radio" name="bound" value = "OUTBOUND">OutBound
