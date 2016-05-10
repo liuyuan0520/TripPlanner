@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -185,10 +187,13 @@
         }
 
         var departureTime = new Date(ms);
+        var origin = ${origin};
+        var destination = ${destination}
+        
 
         var request = {
-          origin: '401 shady ave',
-          destination: '5000 forbes ave',
+          origin: origin,
+          destination: destination,
           travelMode: google.maps.DirectionsTravelMode.TRANSIT,
           provideRouteAlternatives: true,
           transitOptions: {

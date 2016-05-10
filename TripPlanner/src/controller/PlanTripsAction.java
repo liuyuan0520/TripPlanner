@@ -2,19 +2,10 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import databean.Plan;
-import util.Common;
 
 /**
  * @author Yuan Liu
@@ -40,11 +31,14 @@ public class PlanTripsAction {
 		departureTime = convertTime(departureTime);
 		if (arrivalTime != null) {
 			arrivalTime = convertTime(arrivalTime);
-			departureTime = null;
+		} else {
+			arrivalTime = "";
 		}
 
-		List<Plan> plans = getPlans(origin, destination, departureTime, arrivalTime);
-		request.getSession().setAttribute("plans", plans);
+		request.getSession().setAttribute("origin", origin);
+		request.getSession().setAttribute("destination", destination);
+		request.getSession().setAttribute("departureTime", departureTime);
+		request.getSession().setAttribute("arrivalTime", arrivalTime);
 
 		return "results.jsp";
 	}
@@ -61,46 +55,5 @@ public class PlanTripsAction {
 			e.printStackTrace();
 		}
 		return String.valueOf(date.getTime() / 1000);
-	}
-
-	private List getPlans(String origin, String destination, String departure, String arrival) {
-		JsonArray plansArray = Common.getGooglePlans(origin, destination, departure, arrival);
-		List<Plan> plans = new ArrayList();
-		for (JsonElement planAsElement : plansArray) {
-			JsonArray legsArray = planAsElement.getAsJsonObject().getAsJsonArray("legs");
-			for (JsonElement legAsElement : legsArray) {
-				Plan plan = new Plan();
-				JsonObject legAsObject = legAsElement.getAsJsonObject();
-
-				String departureTime = legAsObject.getAsJsonPrimitive("departure_time").getAsString();
-				String arrivalTime = legAsObject.getAsJsonPrimitive("departure_time").getAsString();
-				String duration = legAsObject.getAsJsonPrimitive("duration").getAsString();
-
-				plan.setArrivalTime(arrivalTime);
-				plan.setDepartureTime(departureTime);
-				plan.setDuration(duration);
-
-				// List<Step> steps = new ArrayList();
-				List<String> routes = new ArrayList();
-				JsonArray stepsArray = legAsObject.getAsJsonArray("steps");
-				for (JsonElement stepAsElement : stepsArray) {
-					JsonObject stepAsObject = stepAsElement.getAsJsonObject();
-					String travelMode = stepAsObject.getAsJsonPrimitive("travel_mode").getAsString();
-					if (travelMode.equals("TRANSIT")) {
-						String routeName = stepAsObject.getAsJsonObject("transit_details").getAsJsonObject("line")
-								.getAsJsonPrimitive("short_name").getAsString();
-						routes.add(routeName);
-					}
-				}
-
-				if (routes.size() == 0) {
-					routes.add("WALKING");
-				}
-				plan.setRoutes(routes);
-
-				plans.add(plan);
-			}
-		}
-		return plans;
 	}
 }
