@@ -60,7 +60,7 @@ public class IndexAction extends Action {
         request.setAttribute("routeIt", routeArr);
         request.setAttribute("routeName", nameArr);
 
-        return "index.jsp";
+        return "searchNextBus.jsp";
     }
 
 }

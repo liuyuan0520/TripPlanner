@@ -16,8 +16,6 @@ public class DAO extends GenericDAO<Route> {
     public Route getStopInfo(String stopId) {
         return null;
     }
-
-
     public Route[] getAllStopsByRouteIdandDir(String routeId, String direction) throws RollbackException {
         Route[] resRoutes = match(
                 MatchArg.and(MatchArg.equals("direction", direction), MatchArg.equals("routeId", routeId)));
