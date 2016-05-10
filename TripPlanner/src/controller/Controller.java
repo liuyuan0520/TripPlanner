@@ -22,7 +22,7 @@ public class Controller extends HttpServlet {
         Model model = new Model(getServletConfig());
         Action.add(new InitializeAction(model));
         Action.add(new IndexAction(model));
-        // Action.add(new ManageAction(model));
+        Action.add(new FindStopAction(model));
         // Action.add(new TrackAction(model));
         // Action.add(new RouteAction(model));
         Action.add(new TestAction(model));

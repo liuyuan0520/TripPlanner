@@ -48,11 +48,27 @@
     ];
      <c:forEach var="u" items="${routeId}">
     	availableTags.push("${u}");
- 	</c:forEach> 
+ 	   </c:forEach> 
     $("#bus").autocomplete({
       source: availableTags
     });
   });
+  $(document).ready(function() {
+        $("#input_busstop").focus(function(){
+          var dir = $("input[bound]:checked").val();
+          var route = $("#bus").val();
+          $.post("findstop-ajax.do", {rt: route, dir: dir}, function(d){
+            var availableTags = [
+            ];
+            $.each(d.stops, function(index, item) {
+              availableTags.push(item.stopName);
+            });
+            $("#input_busstop").autocomplete({
+              source: availableTags
+            });
+          });
+        });
+    });
   </script>
 </head>
 
@@ -92,15 +108,15 @@
                              		<tbody>
                                 		<tr>
 											<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "inBound" checked = "checked">inBound
+      											<input type="radio" name="bound" value = "INBOUND" checked = "checked">InBound
     										</label></td>
     										<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "outBound">outBound
+      											<input type="radio" name="bound" value = "OUTBOUND">OutBound
     										</label></td>
                                         </tr>
                                         <tr>        
                                              <td class="center"><input class="form-control" placeholder="Bus" name="bus" id="bus" autofocus></td>
-                                             <td class="center"><input class="form-control" placeholder="Bus Stop" name="busStop"></td>
+                                             <td class="center"><input class="form-control" placeholder="Bus Stop" name="busStop" id="input_busstop"></td>
                                         </tr>                       
                                         <tr>
                                              <td><a href="searchResult.jsp" class="btn btn-primary btn-lg">Search</a></td>
@@ -264,13 +280,6 @@
     </div>
     <!-- /#wrapper -->
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-    });
-    </script>
 </body>
 
 </html>
