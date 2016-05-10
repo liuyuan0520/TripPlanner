@@ -10,130 +10,54 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <%@include file="import.jsp"%>
 	<script>
-	 var thisLat = 40.443518, thisLng = -79.945757;
-     var map;
-     var infoWindow;
-     var pos;
-     var service;
-     
-     var cars = [];
-     <c:forEach var="bus" items="${busList}">
-     	var temp = [];
-     	temp.push("${bus.routeId}");
-     	temp.push("${bus.latitude}");
-     	temp.push("${bus.longitude}");
-     	cars.push(temp);
-	 </c:forEach> 
-     var stops = [];
-    <c:forEach var="stop" items="${stopList}">
-  		var temp = [];
-  		temp.push("${bus.routeId}");
-  		temp.push("${bus.latitude}");
-  		temp.push("${bus.longitude}");
-  		stops.push(temp);
-	 </c:forEach> 
-     function initMap() {
-       map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 17,
-         center: {lat: thisLat, lng: thisLng}
-       });
-       //var infoWindow = new google.maps.InfoWindow({map: map});
-       var latitude, longitude;
-       navigator.geolocation.getCurrentPosition(function(position) {
-       	latitude = position.coords.latitude;
-       	longitude = position.coords.longitude;
-           pos = {
-             lat: latitude,
-             lng: longitude
-           };
-           var marker = new google.maps.Marker({
-               position: pos,
-               map: map,
-               title: 'you are here'
-             });
-           map.setCenter(pos);
-         });
 	 var thisLat = ${stopLat}, thisLng = ${stopLon};
      var map;
      var infoWindow;
      var pos;
      var service;
-     
+     var vid;
+     var markers = [];
      var cars = [];
      <c:forEach var="bus" items="${busList}">
      	var temp = [];
      	temp.push("${bus.routeId}");
      	temp.push(${bus.latitude});
      	temp.push(${bus.longitude});
+     	vid = ${bus.vid};
      	cars.push(temp);
 	 </c:forEach> 
      var stops = [];
      var temp = [];
-		temp.push("${stopName}");
-		temp.push(${stopLat});
-		temp.push(${stopLon});
-		stops.push(temp);
-		/*
-    <c:forEach var="stop" items="${stopList}">
-  		var temp = [];
-  		temp.push("${bus.routeId}");
-  		temp.push("${bus.latitude}");
-  		temp.push("${bus.longitude}");
-  		stops.push(temp);
-	 </c:forEach> 
-	 */
+	temp.push("${stopName}");
+	temp.push(${stopLat});
+	temp.push(${stopLon});
+	stops.push(temp);
+
      function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 17,
+         zoom: 14,
          center: {lat: thisLat, lng: thisLng}
        });
-       //var infoWindow = new google.maps.InfoWindow({map: map});
-      /*  var latitude, longitude;
-       navigator.geolocation.getCurrentPosition(function(position) {
-       	latitude = position.coords.latitude;
-       	longitude = position.coords.longitude;
-           pos = {
-             lat: latitude,
-             lng: longitude
-           };
-           var marker = new google.maps.Marker({
-               position: pos,
-               map: map,
-               title: 'you are here'
-             });
-           map.setCenter(pos);
-         }); */
+
+        //setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+        setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+        setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+       setInterval(function(){
+    	   $.post("vehicle-ajax.do", {vid: vid}, function(d){
+    		   cars = [];
+    		   var temp = [];
+    		   clearMarkers();
+    	     	temp.push(d.routeId);
+    	     	temp.push(parseFloat(d.lat));
+    	     	temp.push(parseFloat(d.lon));
+    	     	cars.push(temp);
+    	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+    	     	setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+    	   });
+       }, 10000);
        
-       setInterval(setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png'), 1000);
-       setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
      }
      
      // draw the bus;
@@ -172,7 +96,18 @@
              title: mark[0],
              zIndex: mark[3]
            });
+           markers.push(marker);
          }
+       }
+     function setMapOnAll(map) {
+         for (var i = 0; i < markers.length; i++) {
+        	 markers[i].setMap(map);
+         }
+       }
+
+       // Removes the markers from the map, but keeps them in the array.
+       function clearMarkers() {
+         setMapOnAll(null);
        }
 	</script>	
 

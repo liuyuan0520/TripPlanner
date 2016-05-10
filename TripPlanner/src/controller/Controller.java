@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
         Action.add(new IndexAction(model));
         Action.add(new FindStopAction(model));
         Action.add(new PredictAction(model));
-        // Action.add(new RouteAction(model));
+        Action.add(new VehicleAction());
         Action.add(new TestAction(model));
         Action.add(new PlanTripsAction());
 

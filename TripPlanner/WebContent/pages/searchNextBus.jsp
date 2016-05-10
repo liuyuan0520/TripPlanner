@@ -104,7 +104,7 @@
         										<tr>
             										<td valign="top" width="150">${bus.routeId}</td>
             										<td valign="top" width="150">${bus.stopName}</td>
-            										<td><a href="xx.do?id = ${bus.routeId}" class="btn btn-primary btn-lg">View Details</a></td>
+            										<td><a href="predict.do?bound=${bus.direction}&bus=${bus.routeId}&busStop=${bus.stopName}" class="btn btn-primary btn-lg">View Details</a></td>
         										</tr>
         									</c:forEach>
                                         </tr>
@@ -147,7 +147,6 @@
                              		<tbody>
                                 		<tr>
 											<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "INBOUND">InBound
       											<input type="radio" name="bound" value = "INBOUND" checked="checked" />InBound
     										</label></td>
     										<td><label class="radio-inline">
