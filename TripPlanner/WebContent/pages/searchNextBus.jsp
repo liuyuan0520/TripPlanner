@@ -15,17 +15,10 @@
   	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <!-- <c:url value="/css/bootstrap.css"/> -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
+    <script src="<c:url value="../bower_components/bootstrap/dist/js/bootstrap.min.js"/>"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="../bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
+    <script src="<c:url value="../bower_components/metisMenu/dist/metisMenu.min.js"/>"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
   	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   	
     <!-- Bootstrap Core CSS -->
