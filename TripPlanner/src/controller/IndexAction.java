@@ -81,10 +81,13 @@ public class IndexAction extends Action {
         String[] routeIds = { "61B", "61C", "61D", "28X", "58", "61A" };
         List<Prediction> predList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            int mod = i % 3;
+            int mod = i / 3;
             String stopId = stopIds[mod];
             String routeId = routeIds[i];
             JSONArray jArray = Common.getPredictions(stopId, routeId);
+            if (jArray == null || jArray.size() == 0) {
+                continue;
+            }
             JSONObject jPredict = (JSONObject) jArray.get(0);
             long gapTime = -1;
             String curTime = null;
@@ -124,7 +127,7 @@ public class IndexAction extends Action {
             predList.add(prediction);
         }
 
-        return "searchNextBus.jsp";
+        return "pages/searchNextBus.jsp";
 
     }
 
