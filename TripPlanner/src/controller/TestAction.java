@@ -7,11 +7,16 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
-
-import util.Common;
+import model.DAO;
+import model.Model;
 
 public class TestAction extends Action {
+
+    private DAO stopDAO;
+
+    public TestAction(Model model) {
+        stopDAO = model.getDAO();
+    }
 
     @Override
     public String getName() {
@@ -21,16 +26,7 @@ public class TestAction extends Action {
     @Override
     public String perform(HttpServletRequest request) {
 
-        String vid = request.getParameter("vid");
-        JSONObject vehicleInfo = (JSONObject) Common.getVehicle(vid).get(0);
-        double lon = (double) vehicleInfo.get("lon");
-        double lat = (double) vehicleInfo.get("lat");
-        JSONObject location = new JSONObject();
-        location.put("lat", lat);
-        location.put("lon", lon);
-
-        request.setAttribute("realLocation", location);
-        return "vehicle.ajax";
+        return null;
     }
 
 }

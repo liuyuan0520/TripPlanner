@@ -20,12 +20,13 @@ public class Controller extends HttpServlet {
     @Override
     public void init() throws ServletException {
         Model model = new Model(getServletConfig());
-        // Action.add(new InitAction(model));
+        Action.add(new InitializeAction(model));
         // Action.add(new StopNameAction(model));
         // Action.add(new ManageAction(model));
         // Action.add(new TrackAction(model));
         // Action.add(new RouteAction(model));
-        // Action.add(new TestAction());
+        Action.add(new TestAction(model));
+
     }
 
     @Override
@@ -95,11 +96,11 @@ public class Controller extends HttpServlet {
         }
 
         // TODO!!!
-        if (nextPage.equals("stop.ajax")) {
+        if (nextPage.equals("findStops.ajax")) {
             System.err.println("nextPage = stop.ajax");
-            JSONObject stopObj = (JSONObject) request.getAttribute("stopObj");
-            System.err.println("stopObj == null: " + (stopObj == null));
-            setResponse(response, stopObj);
+            JSONObject stopsObj = (JSONObject) request.getAttribute("stops");
+            // System.err.println("stopObj == null: " + (stopObj == null));
+            setResponse(response, stopsObj);
             return;
         }
 

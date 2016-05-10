@@ -8,12 +8,21 @@ public class Route {
 	private String routeName;
 	private int stopId;
 	private String stopName;
+	private String direction;
 	private double stopLat;
 	private double stopLong;
 	private int id;
 
 	public int getId() {
 		return id;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 
 	public void setId(int id) {

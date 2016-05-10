@@ -184,7 +184,7 @@ public class Common {
 		try {
 			url = new URL("http://truetime.portauthority.org/bustime/" + "api/v2/getvehicles?key=" + KEY + "&vid=" + vid
 					+ "&format=json");
-
+			System.out.println(url);
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
 
@@ -195,6 +195,36 @@ public class Common {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static JsonArray getGooglePlans(String origin, String destination, String departure, String arrival) {
+		HttpURLConnection connection = null;
+		StringBuilder sb = new StringBuilder(
+				"https://maps.googleapis.com/maps/api/directions/json?mode=transit&alternatives=true&origin=" + origin
+						+ "&destination=" + destination);
+		if (arrival != null) {
+			sb.append("&arrival_time=" + arrival);
+		}
+		if (departure != null) {
+			sb.append("&departure_time=" + departure);
+		}
+
+		URL url;
+		try {
+			url = new URL(sb.toString());
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			JsonArray plans = new JsonParser().parse(getStringFromWeb(connection)).getAsJsonObject()
+					.getAsJsonArray("routes");
+			return plans;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
