@@ -22,6 +22,7 @@ public class VehicleAction extends Action {
     public String perform(HttpServletRequest request) {
 
         String vid = request.getParameter("vid");
+        System.out.println(vid);
         JSONObject vehicleInfo = (JSONObject) Common.getVehicle(vid).get(0);
         double lon = Double.parseDouble(((String) vehicleInfo.get("lon"))
                 .trim());

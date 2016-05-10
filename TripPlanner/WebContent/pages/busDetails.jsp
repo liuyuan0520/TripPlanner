@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,54 +10,105 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
-    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <%@include file="import.jsp"%>
 	<script>
-	var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-	
-	function initialize()
-	{
-	var mapProp = {
-	  center:myCenter,
-	  zoom:5,
-	  mapTypeId:google.maps.MapTypeId.ROADMAP
-	  };
-	
-	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-	
-	var marker=new google.maps.Marker({
-	  position:myCenter,
-	  });
-	
-	marker.setMap(map);
-	}
-	
-	google.maps.event.addDomListener(window, 'load', initialize);
+	 var thisLat = ${stopLat}, thisLng = ${stopLon};
+     var map;
+     var infoWindow;
+     var pos;
+     var service;
+     var vid;
+     var markers = [];
+     var cars = [];
+     <c:forEach var="bus" items="${busList}">
+     	var temp = [];
+     	temp.push("${bus.routeId}");
+     	temp.push(${bus.latitude});
+     	temp.push(${bus.longitude});
+     	vid = ${bus.vid};
+     	cars.push(temp);
+	 </c:forEach> 
+     var stops = [];
+     var temp = [];
+	temp.push("${stopName}");
+	temp.push(${stopLat});
+	temp.push(${stopLon});
+	stops.push(temp);
+
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 14,
+         center: {lat: thisLat, lng: thisLng}
+       });
+
+        //setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+        setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+        setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+       setInterval(function(){
+    	   $.post("vehicle-ajax.do", {vid: vid}, function(d){
+    		   cars = [];
+    		   var temp = [];
+    		   clearMarkers();
+    	     	temp.push(d.routeId);
+    	     	temp.push(parseFloat(d.lat));
+    	     	temp.push(parseFloat(d.lon));
+    	     	cars.push(temp);
+    	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+    	     	setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+    	   });
+       }, 10000);
+       
+     }
+     
+     // draw the bus;
+     function setMarkers(target, map, myUrl) {
+         // Adds markers to the map.
+
+         // Marker sizes are expressed as a Size of X,Y where the origin of the image
+         // (0,0) is located in the top left of the image.
+
+         // Origins, anchor positions and coordinates of the marker increase in the X
+         // direction to the right and in the Y direction down.
+         
+         var image = {
+           url: myUrl,
+           // This marker is 20 pixels wide by 32 pixels high.
+           // size: new google.maps.Size(20, 20),
+           // The origin for this image is (0, 0).
+           origin: new google.maps.Point(0, 0),
+           // The anchor for this image is the base of the flagpole at (0, 32).
+           anchor: new google.maps.Point(0, 32)
+         };
+         // Shapes define the clickable region of the icon. The type defines an HTML
+         // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+         // The final coordinate closes the poly by connecting to the first coordinate.
+         var shape = {
+           coords: [1, 1, 1, 20, 18, 20, 18, 1],
+           type: 'poly'
+         };
+         for (var i = 0; i < target.length; i++) {
+           var mark = target[i];
+           var marker = new google.maps.Marker({
+             position: {lat: mark[1], lng: mark[2]},
+             map: map,
+             icon: image,
+             shape: shape,
+             title: mark[0],
+             zIndex: mark[3]
+           });
+           markers.push(marker);
+         }
+       }
+     function setMapOnAll(map) {
+         for (var i = 0; i < markers.length; i++) {
+        	 markers[i].setMap(map);
+         }
+       }
+
+       // Removes the markers from the map, but keeps them in the array.
+       function clearMarkers() {
+         setMapOnAll(null);
+       }
 	</script>	
 
 </head>
@@ -87,7 +139,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            View Bus Details
+                            <span class="label label-default">View Bus Details</span>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -95,33 +147,38 @@
                              <form role="form">
                              <table class="table table-striped table-hover" id="dataTables-example">                   
                                 <tbody>
-                                        <tr class="odd gradeX">                                                            
-                                             <td>Route</td> 
-                                             <td>86 Liberty Wilkinsbergs</td>
+                                	     <c:forEach var="bus" items="${busList}">
+										  <tr class="odd gradeX">                                                            
+                                             <td><span class="label label-default">${bus.routeId}</span></td> 
                                              <td></td><td></td><td></td><td></td><td></td>
-                                        </tr>
-                                        <tr class="even gradeC">
+                                          </tr>
+                                          <tr class="even gradeC">
                                              <td>Next Stop</td>
-                                             <td>Mark Otto</td> 
+                                             <td>${bus.stopName}</td> 
                                              <td></td><td></td><td></td><td></td><td></td>
-                                        </tr>       
-                                        <tr class="odd gradeX">                                                            
+                                          </tr>
+                                          <tr class="odd gradeC">                                                             
                                              <td>Direction</td> 
-                                             <td>@twitter3</td>
+                                             <td>${bus.direction}</td>
                                              <td></td><td></td><td></td><td></td><td></td>
-                                        
-                                        </tr>
-                                        <tr class="even gradeC">
-                                             <td>Type</td>
-                                             <td>Regular Bus</td> 
+                                          </tr>
+                                          <tr class="even gradeC">
+                                             <td>arrival time</td>
+                                             <td>${bus.predTime}</td> 
                                              <td></td><td></td><td></td><td></td><td></td>
-                                        </tr>  
+                                          </tr>
+                                         <tr class="odd gradeC">
+                                             <td>waiting time</td>
+                                             <td>${bus.gapTime}</td> 
+                                             <td></td><td></td><td></td><td></td><td></td>
+                                          </tr>
+	 									 </c:forEach> 
                                 </tbody>
                              </table>
                              </form>
                             </div>
                             <!-- /.table-responsive -->
-                            <div id="googleMap" style="width:1000px;height:380px;"></div>
+                            <div id="map" style="width:100%;height:500px"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -155,7 +212,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
+    <script async defer
+    	src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBPLZvtXmpwTONHCfU6gEz_GQ-ocwHvumk&callback=initMap">
+    </script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {

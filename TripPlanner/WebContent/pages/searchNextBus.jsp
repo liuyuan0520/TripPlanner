@@ -104,7 +104,7 @@
         										<tr>
             										<td valign="top" width="150">${bus.routeId}</td>
             										<td valign="top" width="150">${bus.stopName}</td>
-            										<td><a href="xx.do?id = ${bus.routeId}" class="btn btn-primary btn-lg">View Details</a></td>
+            										<td><a href="predict.do?bound=${bus.direction}&bus=${bus.routeId}&busStop=${bus.stopName}" class="btn btn-primary btn-lg">View Details</a></td>
         										</tr>
         									</c:forEach>
                                         </tr>
@@ -142,23 +142,25 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                             <form role="form">
+                             <form role="form" action="predict.do" method="GET">
                              	<table class="table table-striped table-hover" id="dataTables-example">                   
                              		<tbody>
                                 		<tr>
 											<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "INBOUND" checked = "checked">InBound
+      											<input type="radio" name="bound" value = "INBOUND" checked="checked" />InBound
     										</label></td>
     										<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "OUTBOUND">OutBound
+      											<input type="radio" name="bound" value = "OUTBOUND" />OutBound
     										</label></td>
                                         </tr>
                                         <tr>        
-                                             <td class="center"><input class="form-control" placeholder="Bus" name="bus" id="bus" autofocus></td>
+                                             <td class="center"><input class="form-control" placeholder="Bus" name="bus" id="bus" /></td>
                                              <td class="center"><input class="form-control" placeholder="Bus Stop" name="busStop" id="input_busstop"></td>
                                         </tr>                       
                                         <tr>
-                                             <td><a href="searchResult.jsp" class="btn btn-primary btn-lg">Search</a></td>
+                                             <td><!-- <a href="searchResult.jsp" class="btn btn-primary btn-lg">Search</a> -->
+                                             	<input type="submit" value="Search" />
+                                             </td>
                                         </tr>
                                 	</tbody>
                              	</table>

@@ -13,9 +13,14 @@ public class DAO extends GenericDAO<Route> {
         super(Route.class, tableName, pool);
     }
 
-    public Route getStopInfo(String stopId) {
+    public Route getStopInfo(String stopName) throws RollbackException {
+        Route[] routes = match(MatchArg.equalsIgnoreCase("stopName", stopName));
+        if (routes.length >= 1) {
+            return routes[0];
+        }
         return null;
     }
+
     public Route[] getAllStopsByRouteIdandDir(String routeId, String direction) throws RollbackException {
         Route[] resRoutes = match(
                 MatchArg.and(MatchArg.equals("direction", direction), MatchArg.equals("routeId", routeId)));
