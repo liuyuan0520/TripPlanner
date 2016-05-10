@@ -171,36 +171,43 @@
       } */
 
       function route() {
-        var departure = "";
-        var arrival = "";
-        var bits = departure.split(':');
-        var now = new Date();
-        var tzOffset = (now.getTimezoneOffset() + 60) * 60 * 1000;
+        var departure = "${departureTime}";
+        var arrival = "${arrivalTime}";
 
-        var time = new Date();
-        time.setHours(bits[0]);
-        time.setMinutes(bits[1]);
-
-        var ms = time.getTime() - tzOffset;
-        if (ms < now.getTime()) {
-          ms += 24 * 60 * 60 * 1000;
+        var departureTime = new Date(+departure);
+        var arrivalTime = "";
+        if (arrival != "") {
+        	arrivalTime = new Date(+arrival);
         }
+        
+        console.log(arrival);
+        console.log(arrivalTime);
+        console.log(departureTime);
 
-        var departureTime = new Date(ms);
         var origin = "${origin}";
         var destination = "${destination}";
-        
-
-        var request = {
-          origin: origin,
-          destination: destination,
-          travelMode: google.maps.DirectionsTravelMode.TRANSIT,
-          provideRouteAlternatives: true,
-          transitOptions: {
-            /* departureTime: departureTime, */
-           /*  arrivalTime: arrivalTime */
-          }
-        };
+        var request;
+		if (arrivalTime == "") {
+	      request = {
+	        origin: origin,
+	        destination: destination,
+	        travelMode: google.maps.DirectionsTravelMode.TRANSIT,
+	        provideRouteAlternatives: true,
+	        transitOptions: {
+	          departureTime: departureTime,
+          	}
+       	  };
+      	} else {
+      	  request = {
+ 		    origin: origin,
+ 		    destination: destination,
+ 		    travelMode: google.maps.DirectionsTravelMode.TRANSIT,
+ 		    provideRouteAlternatives: true,
+ 		    transitOptions: {
+ 		      arrivalTime: arrivalTime,
+      	    }
+      	  };
+      	}
 
         var panel = document.getElementById('panel');
         panel.innerHTML = '';

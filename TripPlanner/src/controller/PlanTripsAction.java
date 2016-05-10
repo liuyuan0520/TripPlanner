@@ -3,7 +3,6 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,21 +25,20 @@ public class PlanTripsAction extends Action {
 
 		System.out.println(origin);
 		System.out.println(destination);
+		System.out.println(departureTime);
+		System.out.println(arrivalTime);
 
 		if (origin == null || origin.length() == 0) {
 			origin = "wean hall";
 		}
-		if (departureTime != null) {
-			departureTime = convertTime(departureTime);
-		}
-		if (arrivalTime != null) {
-			arrivalTime = convertTime(arrivalTime);
-		} else {
-			arrivalTime = "";
+		if (destination == null || destination.length() == 0) {
+			return "planTrips.jsp";
 		}
 
-		arrivalTime = String.valueOf(System.currentTimeMillis());
-		departureTime = "";
+		departureTime = convertTime(departureTime);
+		if (arrivalTime != "") {
+			arrivalTime = convertTime(arrivalTime);
+		}
 
 		request.getSession().setAttribute("origin", origin);
 		request.getSession().setAttribute("destination", destination);
@@ -51,8 +49,8 @@ public class PlanTripsAction extends Action {
 	}
 
 	private String convertTime(String time) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		sdf.setTimeZone(TimeZone.getTimeZone("EST"));
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy h:mm a");
+		// sdf.setTimeZone(TimeZone.getTimeZone("EST"));
 
 		Date date = new Date();
 		try {
@@ -61,6 +59,7 @@ public class PlanTripsAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return String.valueOf(date.getTime() / 1000);
+		System.out.println("parsed date " + date);
+		return String.valueOf(date.getTime());
 	}
 }
