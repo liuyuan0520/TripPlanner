@@ -65,9 +65,9 @@ public class IndexAction extends Action {
             nameArr[count++] = routeName.get(tmpRoute);
         }
 
-        for (int i = 0; i < routeArr.length; i++) {
-            System.out.println(routeArr[i] + " " + nameArr[i]);
-        }
+        // for (int i = 0; i < routeArr.length; i++) {
+        // System.out.println(routeArr[i] + " " + nameArr[i]);
+        // }
         request.setAttribute("routeId", routeArr);
         request.setAttribute("routeName", nameArr);
 
@@ -115,7 +115,16 @@ public class IndexAction extends Action {
             String dir = (String) jPredict.get("rtdir");
 
             // get the vehicle location
-            JSONObject vehicle = (JSONObject) Common.getVehicle((String) jPredict.get("vid")).get(0);
+            // System.out.println((String) jPredict.get("vid"));
+            if (jPredict.get("vid") == null) {
+                continue;
+            }
+            JSONObject vehicle = null;
+            try {
+                vehicle = (JSONObject) Common.getVehicle((String) jPredict.get("vid")).get(0);
+            } catch (Exception e) {
+                continue;
+            }
             double lon = Double.parseDouble(((String) vehicle.get("lon"))
                     .trim());
             double lat = Double.parseDouble(((String) vehicle.get("lat"))
