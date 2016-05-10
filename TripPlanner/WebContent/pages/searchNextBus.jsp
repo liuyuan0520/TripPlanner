@@ -147,14 +147,14 @@
                              		<tbody>
                                 		<tr>
 											<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "INBOUND" checked = "checked">InBound
+      											<input type="radio" name="bound" value = "INBOUND" checked="checked" />InBound
     										</label></td>
     										<td><label class="radio-inline">
-      											<input type="radio" name="bound" value = "OUTBOUND">OutBound
+      											<input type="radio" name="bound" value = "OUTBOUND" />OutBound
     										</label></td>
                                         </tr>
                                         <tr>        
-                                             <td class="center"><input class="form-control" placeholder="Bus" name="bus" id="bus" autofocus></td>
+                                             <td class="center"><input class="form-control" placeholder="Bus" name="bus" id="bus" /></td>
                                              <td class="center"><input class="form-control" placeholder="Bus Stop" name="busStop" id="input_busstop"></td>
                                         </tr>                       
                                         <tr>
