@@ -12,7 +12,7 @@
 
     <%@include file="import.jsp"%>
 	<script>
-	 var thisLat = 40.443518, thisLng = -79.945757;
+	 var thisLat = ${stopLat}, thisLng = ${stopLon};
      var map;
      var infoWindow;
      var pos;
@@ -27,6 +27,12 @@
      	cars.push(temp);
 	 </c:forEach> 
      var stops = [];
+     var temp = [];
+		temp.push("${stopName}");
+		temp.push(${stopLat});
+		temp.push(${stopLon});
+		stops.push(temp);
+		/*
     <c:forEach var="stop" items="${stopList}">
   		var temp = [];
   		temp.push("${bus.routeId}");
@@ -34,13 +40,14 @@
   		temp.push("${bus.longitude}");
   		stops.push(temp);
 	 </c:forEach> 
+	 */
      function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
          zoom: 17,
          center: {lat: thisLat, lng: thisLng}
        });
        //var infoWindow = new google.maps.InfoWindow({map: map});
-       var latitude, longitude;
+      /*  var latitude, longitude;
        navigator.geolocation.getCurrentPosition(function(position) {
        	latitude = position.coords.latitude;
        	longitude = position.coords.longitude;
@@ -54,7 +61,7 @@
                title: 'you are here'
              });
            map.setCenter(pos);
-         });
+         }); */
        setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
        setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
      }

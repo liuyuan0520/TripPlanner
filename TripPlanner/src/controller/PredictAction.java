@@ -60,7 +60,7 @@ public class PredictAction extends Action {
         String stopId = String.valueOf(curStop.getStopId());
         request.setAttribute("stopId", stopId);
         request.setAttribute("stopName", curStop.getStopName());
-        request.setAttribute("stopLong", curStop.getStopLong());
+        request.setAttribute("stopLon", curStop.getStopLong());
         request.setAttribute("stopLat", curStop.getStopLat());
 
         List<Prediction> predList = new ArrayList<>();
