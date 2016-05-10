@@ -1,0 +1,10 @@
+div[class="adp-warnbox"], div[class="adp-agencies"], div[class="adp-legal"], div[class="time"] {
+    display:none;
+}
+
+#formItem label {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+}
