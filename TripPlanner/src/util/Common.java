@@ -204,7 +204,7 @@ public class Common {
 		HttpURLConnection connection = null;
 		StringBuilder sb = new StringBuilder(
 				"https://maps.googleapis.com/maps/api/directions/json?mode=transit&alternatives=true&origin=" + origin
-						+ "&destination=" + destination);
+						+ "&destination=" + destination + "key=AIzaSyBPLZvtXmpwTONHCfU6gEz_GQ-ocwHvumk");
 		if (arrival != null) {
 			sb.append("&arrival_time=" + arrival);
 		}
