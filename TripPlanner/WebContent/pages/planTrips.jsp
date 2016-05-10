@@ -234,14 +234,19 @@
         <div>
           <h2>Transit directions</h2>
         </div>
-	        <div> 
-	          <label>From:</label>
-	          <input class="input" id="from" value="5000 Forbes Ave">
-	        </div>
-	        <div>
-	          <label>To:</label>
-	          <input class="input" id="to" value="">
-	        </div>
+        <div>
+        	<form role="form" action="planTrips.do" method="POST">
+		        <div> 
+		          <label>From:</label>
+		          <input class="input" name="origin" id="from" value="5000 Forbes Ave">
+		        </div>
+		        <div>
+		          <label>To:</label>
+		          <input class="input" name="destination" id="to" value="">
+		        </div>
+		        <input type="submit" name="action" class="" value="GO">
+		     </form>
+	    </div>    
         <div>Depart at <select id="depart"></select></div>
         <div class="btn">
           <button id="go">Get Directions</button>

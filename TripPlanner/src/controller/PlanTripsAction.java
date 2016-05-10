@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
  * @date 05/09/2016
  */
 
-public class PlanTripsAction {
+public class PlanTripsAction extends Action {
 
 	public String getName() {
-		return "plan.do";
+		return "planTrips.do";
 	}
 
 	public String perform(HttpServletRequest request) {
@@ -24,23 +24,30 @@ public class PlanTripsAction {
 		String departureTime = request.getParameter("departureTime");
 		String arrivalTime = request.getParameter("arrivalTime");
 
+		System.out.println(origin);
+		System.out.println(destination);
+
 		if (origin == null || origin.length() == 0) {
 			origin = "wean hall";
 		}
-
-		departureTime = convertTime(departureTime);
+		if (departureTime != null) {
+			departureTime = convertTime(departureTime);
+		}
 		if (arrivalTime != null) {
 			arrivalTime = convertTime(arrivalTime);
 		} else {
 			arrivalTime = "";
 		}
 
+		arrivalTime = String.valueOf(System.currentTimeMillis());
+		departureTime = "";
+
 		request.getSession().setAttribute("origin", origin);
 		request.getSession().setAttribute("destination", destination);
 		request.getSession().setAttribute("departureTime", departureTime);
 		request.getSession().setAttribute("arrivalTime", arrivalTime);
 
-		return "results.jsp";
+		return "planTripResults.jsp";
 	}
 
 	private String convertTime(String time) {

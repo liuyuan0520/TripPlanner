@@ -187,8 +187,8 @@
         }
 
         var departureTime = new Date(ms);
-        var origin = ${origin};
-        var destination = ${destination}
+        var origin = "${origin}";
+        var destination = "${destination}";
         
 
         var request = {
@@ -197,7 +197,7 @@
           travelMode: google.maps.DirectionsTravelMode.TRANSIT,
           provideRouteAlternatives: true,
           transitOptions: {
-            departureTime: departureTime,
+            /* departureTime: departureTime, */
            /*  arrivalTime: arrivalTime */
           }
         };
