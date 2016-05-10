@@ -55,7 +55,7 @@
   });
   $(document).ready(function() {
         $("#input_busstop").focus(function(){
-          var dir = $("input[bound]:checked").val();
+          var dir = $('input:radio:checked').val();//$("input[bound]:checked").val();
           var route = $("#bus").val();
           $.post("findstop-ajax.do", {rt: route, dir: dir}, function(d){
             var availableTags = [
@@ -64,7 +64,8 @@
               availableTags.push(item.stopName);
             });
             $("#input_busstop").autocomplete({
-              source: availableTags
+              source: availableTags,
+              minLength: 0
             });
           });
         });
