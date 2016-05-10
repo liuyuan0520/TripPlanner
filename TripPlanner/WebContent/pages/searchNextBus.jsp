@@ -51,7 +51,7 @@
   $(function() {
     var availableTags = [
     ];
-    <c:forEach var="u" items="${routeIt}">
+    <c:forEach var="u" items="${routeId}">
     	availableTags.push(u);
  	</c:forEach>
     $("#bus").autocomplete({
