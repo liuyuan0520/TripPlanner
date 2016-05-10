@@ -7,7 +7,6 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import databean.Route;
 import model.DAO;
 import model.Model;
 
@@ -27,14 +26,7 @@ public class TestAction extends Action {
     @Override
     public String perform(HttpServletRequest request) {
 
-        String routeId = request.getParameter("rt");
-        String direction = request.getParameter("dir");
-
-        Route[] stops = stopDAO.getAllStopsByRouteIdandDir(routeId, direction);
-
-        request.setAttribute("stops", stops);
-
-        return "findStop.ajax";
+        return null;
     }
 
 }
