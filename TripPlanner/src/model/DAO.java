@@ -22,4 +22,10 @@ public class DAO extends GenericDAO<Route> {
                 MatchArg.and(MatchArg.equals("direction", direction), MatchArg.equals("routeId", routeId)));
         return resRoutes;
     }
+
+    public Route[] getAllRoutes() throws RollbackException {
+        Route[] routes = match();
+
+        return routes;
+    }
 }
