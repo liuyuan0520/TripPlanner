@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.genericdao.RollbackException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -38,17 +39,28 @@ public class PredictAction extends Action {
     public String perform(HttpServletRequest request) {
 
         // Get Parameters from front end form
-        String route = request.getParameter("route").trim();
-        String direction = request.getParameter("direction").trim();
-        String stopId = request.getParameter("stop").trim();
+        String route = request.getParameter("bus").trim();
+        String direction = request.getParameter("bound").trim();
+        String stopName = request.getParameter("busStop").trim();
 
-        String getAllRoute = request.getParameter("allroutes").trim();
+        String getAllRoute = null;// request.getParameter("allroutes").trim();
 
         // Get the stop location
-        Route curStop = stopDAO.getStopInfo(stopId);
+        Route curStop = null;
+        try {
+            curStop = stopDAO.getStopInfo(stopName);
+        } catch (RollbackException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        if (curStop == null) {
+            System.out.println("something wrong");
+            return "error.jsp";
+        }
+        String stopId = String.valueOf(curStop.getStopId());
         request.setAttribute("stopId", stopId);
         request.setAttribute("stopName", curStop.getStopName());
-        request.setAttribute("stopLong", curStop.getStopLong());
+        request.setAttribute("stopLon", curStop.getStopLong());
         request.setAttribute("stopLat", curStop.getStopLat());
 
         List<Prediction> predList = new ArrayList<>();
@@ -57,10 +69,10 @@ public class PredictAction extends Action {
 
         } else {
             // search for just this route for this stop
-            JSONArray predictions = Common.getPredictions(stopId, route);
-            if (predictions == null || predictions.size() == 0) {
-                continue;
-            }
+            JSONArray predictions = null;
+            while ((predictions = Common.getPredictions(stopId, route)) == null)
+                ;
+
             JSONObject jPredict = (JSONObject) predictions.get(0);
             long gapTime = -1;
             String curTime = null;
@@ -87,16 +99,18 @@ public class PredictAction extends Action {
 
             // get the vehicle location
             JSONObject vehicle = (JSONObject) Common.getVehicle((String) jPredict.get("vid")).get(0);
-            double longitude = (double) vehicle.get("lon");
-            double latitude = (double) vehicle.get("lat");
+            double lon = Double.parseDouble(((String) vehicle.get("lon"))
+                    .trim());
+            double lat = Double.parseDouble(((String) vehicle.get("lat"))
+                    .trim());
 
-            Prediction prediction = new Prediction(latitude, longitude, stopId, curStop.getStopName(), route, direction,
+            Prediction prediction = new Prediction(lat, lon, stopId, curStop.getStopName(), route, direction,
                     (String) jPredict.get("vid"),
                     String.valueOf(gapTime), predTime);
             predList.add(prediction);
         }
-        request.setAttribute("predList", predList);
-        return "showPrediction.jsp";
+        request.setAttribute("busList", predList);
+        return "/pages/busDetails.jsp";
     }
 
 }

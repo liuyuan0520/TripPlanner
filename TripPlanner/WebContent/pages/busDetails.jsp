@@ -36,6 +36,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <%@include file="import.jsp"%>
 	<script>
 	 var thisLat = 40.443518, thisLng = -79.945757;
      var map;
@@ -80,7 +81,58 @@
              });
            map.setCenter(pos);
          });
-       setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
+	 var thisLat = ${stopLat}, thisLng = ${stopLon};
+     var map;
+     var infoWindow;
+     var pos;
+     var service;
+     
+     var cars = [];
+     <c:forEach var="bus" items="${busList}">
+     	var temp = [];
+     	temp.push("${bus.routeId}");
+     	temp.push(${bus.latitude});
+     	temp.push(${bus.longitude});
+     	cars.push(temp);
+	 </c:forEach> 
+     var stops = [];
+     var temp = [];
+		temp.push("${stopName}");
+		temp.push(${stopLat});
+		temp.push(${stopLon});
+		stops.push(temp);
+		/*
+    <c:forEach var="stop" items="${stopList}">
+  		var temp = [];
+  		temp.push("${bus.routeId}");
+  		temp.push("${bus.latitude}");
+  		temp.push("${bus.longitude}");
+  		stops.push(temp);
+	 </c:forEach> 
+	 */
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 17,
+         center: {lat: thisLat, lng: thisLng}
+       });
+       //var infoWindow = new google.maps.InfoWindow({map: map});
+      /*  var latitude, longitude;
+       navigator.geolocation.getCurrentPosition(function(position) {
+       	latitude = position.coords.latitude;
+       	longitude = position.coords.longitude;
+           pos = {
+             lat: latitude,
+             lng: longitude
+           };
+           var marker = new google.maps.Marker({
+               position: pos,
+               map: map,
+               title: 'you are here'
+             });
+           map.setCenter(pos);
+         }); */
+       
+       setInterval(setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png'), 1000);
        setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
      }
      
