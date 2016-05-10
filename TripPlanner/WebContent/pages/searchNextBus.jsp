@@ -86,8 +86,46 @@
             <%@include file="leftNav.jsp"%>
             <!-- /.navbar-static-side -->
         </nav>
-
+		
         <div id="page-wrapper">
+		<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                             <form role="form">
+                             	<table class="table table-striped table-hover" id="dataTables-example">                   
+                             		<tbody>
+                                		<tr>
+											<c:forEach var="bus" items="${busList}">
+        										<tr>
+            										<td valign="top" width="150">${bus.routeId}</td>
+            										<td valign="top" width="150">${bus.stopName}</td>
+            										<td><a href="xx.do?id = ${bus.routeId}" class="btn btn-primary btn-lg">View Details</a></td>
+        										</tr>
+        									</c:forEach>
+                                        </tr>
+                                	</tbody>
+                             	</table>
+                             </form>
+                            </div>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        <div class="row">
+        	<div class="col-lg-12">
+        		<div id="map" style="width:100%;height:500px"></div>
+        </div>
+        </div>
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Search Next Bus</h1>
@@ -140,7 +178,7 @@
             <!-- /.row -->
 
             <!-- /.row -->
-            <div id="map" style="width:100%;height:500px"></div>
+            
         </div>
         <!-- /#page-wrapper -->
     <script>
