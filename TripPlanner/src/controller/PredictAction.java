@@ -58,6 +58,9 @@ public class PredictAction extends Action {
         } else {
             // search for just this route for this stop
             JSONArray predictions = Common.getPredictions(stopId, route);
+            if (predictions == null || predictions.size() == 0) {
+                continue;
+            }
             JSONObject jPredict = (JSONObject) predictions.get(0);
             long gapTime = -1;
             String curTime = null;
