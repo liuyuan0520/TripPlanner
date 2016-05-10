@@ -87,7 +87,8 @@ public class PredictAction extends Action {
             double longitude = (double) vehicle.get("lon");
             double latitude = (double) vehicle.get("lat");
 
-            Prediction prediction = new Prediction(latitude, longitude, route, direction, (String) jPredict.get("vid"),
+            Prediction prediction = new Prediction(latitude, longitude, stopId, curStop.getStopName(), route, direction,
+                    (String) jPredict.get("vid"),
                     String.valueOf(gapTime), predTime);
             predList.add(prediction);
         }

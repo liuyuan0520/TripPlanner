@@ -78,6 +78,7 @@ public class IndexAction extends Action {
         // Step3 find nearby ones
         // However, here we fix the stop & bus {7116: 61BCD, 4408: 28X, 58, 61A}
         String[] stopIds = { "7116", "4408" };
+        String[] stopNames = { "Forbes Ave at Hamburg Hall", "Forbes Ave opp Hamburg Hall" };
         String[] routeIds = { "61B", "61C", "61D", "28X", "58", "61A" };
         List<Prediction> predList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -101,11 +102,10 @@ public class IndexAction extends Action {
                 long curMilli = sdFormat.parse(curTime).getTime();
                 long predMilli = sdFormat.parse(predTime).getTime();
                 gapTime = (predMilli - curMilli) / (1000 * 60);
-
             } catch (ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+
             if (gapTime != -1) {
                 request.setAttribute("waitTime", gapTime);
             } else {
@@ -121,11 +121,16 @@ public class IndexAction extends Action {
             double lat = Double.parseDouble(((String) vehicle.get("lat"))
                     .trim());
 
-            Prediction prediction = new Prediction(lat, lon, routeId, dir,
+            Prediction prediction = new Prediction(lat, lon, stopIds[mod], stopNames[mod], routeId, dir,
                     (String) jPredict.get("vid"),
                     String.valueOf(gapTime), predTime);
             predList.add(prediction);
+            if (predList.size() >= 3) {
+                break;
+            }
         }
+        request.setAttribute("busList", predList);
+        // System.out.println(predList.size());
 
         return "pages/searchNextBus.jsp";
 
