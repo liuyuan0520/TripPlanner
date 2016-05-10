@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -251,5 +253,22 @@ public class Common {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static long getTimeGap(String curTime, String predTime) {
+        long gapTime = -1;
+        try {
+            // 20160506 21:08
+            SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd hh:mm");
+
+            long curMilli = sdFormat.parse(curTime).getTime();
+            long predMilli = sdFormat.parse(predTime).getTime();
+            gapTime = (predMilli - curMilli) / (1000 * 60);
+
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return gapTime;
     }
 }

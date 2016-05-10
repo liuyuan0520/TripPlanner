@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
     public void init() throws ServletException {
         Model model = new Model(getServletConfig());
         Action.add(new InitializeAction(model));
-        // Action.add(new StopNameAction(model));
+        Action.add(new IndexAction(model));
         // Action.add(new ManageAction(model));
         // Action.add(new TrackAction(model));
         // Action.add(new RouteAction(model));
