@@ -150,21 +150,17 @@
                                 	     <c:forEach var="bus" items="${busList}">
 										  <tr class="odd gradeX">                                                            
                                              <td><span class="label label-default">${bus.routeId}</span></td> 
-                                             <td></td>
+                                             <td>${bus.direction}</td>
                                           </tr>
                                           <tr class="even gradeC">
                                              <td width="2000"><a class="text-primary">Stop Name</a></td>
                                              <td width="5000">${bus.stopName}</td> 
                                           </tr>
-                                          <tr class="odd gradeC">                                                             
-                                             <td><a class="text-primary">Direction</a></td> 
-                                             <td>${bus.direction}</td>
-                                          </tr>
-                                          <tr class="even gradeC">
+                                          <%-- <tr class="even gradeC">
                                              <td><a class="text-primary">Arrive At</a></td>
                                              <td>${bus.predTime}</td> 
                                             
-                                          </tr>
+                                          </tr> --%>
                                          <tr class="odd gradeC">
                                              <td><a class="text-primary">Waiting Time</a></td>
                                              <td>${bus.gapTime}&nbsp;Min (s)</td> 
@@ -172,15 +168,39 @@
                                           </tr>
                                           <tr class="even gradeC">
                                              <td><a class="text-primary">Remind me before </a></td>
-                                             <td>5 &nbsp; 10 &nbsp;15</td> 
+                                             <td>
+                                             <label class="radio-inline">
+                                             <input type="radio" name="time" value="5" checked />5
+                                             </label>
+                                             <label class="radio-inline">
+                                             <input type="radio" name="time" value="10" />10
+                                             </label>
+                                             <label class="radio-inline">
+                                             <input type="radio" name="time" value="15" />15
+                                             </label>
+                                             &nbsp; Mins
+                                             </td> 
                                             
                                           </tr>
                                          <tr class="odd gradeC">
                                              <td><a class="text-primary">Phone Number</a></td>
-                                             <td><input type="text" name="phoneNumber" value=""></input>&nbsp;&nbsp;<button type="button" class="btn btn-primary btn-sm">Notify Me</button></td> 
+                                             <td><input type="text" id="phoneNumber" name="phoneNumber" value=""></input>&nbsp;&nbsp;<button type="button" id="notify-button" class="btn btn-primary btn-sm">Notify Me</button></td> 
                                           
                                            
                                           </tr>
+                                          <script>
+                                          $(document).ready(function(){
+                                        	  $("#notify-button").click(function(){
+                                        		  var time = $("input:radio[name=time]").val();
+                                        		  var phone = $("input:text[name=phoneNumber]").val();
+                                        		  //console.log(time + phone);
+                                        		  $.post("notify.do", {time:time, phone:phone}, function(d){
+                                        			  alert("A message will be sent to your phone " + time + " mins before bus arrives");
+                                        		  });
+                                        		  
+                                        	  });
+                                          });
+                                          </script>
                                           
                                           <!-- <tr class="even gradeC">
                                              <td>REMIND ME 
