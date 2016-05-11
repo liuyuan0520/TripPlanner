@@ -111,7 +111,7 @@
 											<c:forEach var="bus" items="${busList}">
         										<tr>
             										<td valign="middle" width="20">${bus.routeId}</td>
-            										<td valign="middle" width="300"><p class="text-primary">${bus.stopName}</p></td>
+            										<td valign="middle" width="300"><a class="text-primary">${bus.stopName}</a></td>
             										<td valign="middle" width="50" >${bus.direction}</td>
             										<td><a href="predict.do?bound=${bus.direction}&bus=${bus.routeId}&busStop=${bus.stopName}" class="btn btn-outline btn-primary">Details</a></td>
         										</tr>

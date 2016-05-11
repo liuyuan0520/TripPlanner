@@ -127,8 +127,11 @@
 
         <div id="page-wrapper">
             <div class="row">
+            <br/>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Bus Details	</h1>
+                <div ALIGN=CENTER>
+                    <h2>BUS DETAILS</h2>
+                </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -136,9 +139,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="label label-default">View Bus Details</span>
-                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
@@ -148,30 +148,28 @@
                                 	     <c:forEach var="bus" items="${busList}">
 										  <tr class="odd gradeX">                                                            
                                              <td><span class="label label-default">${bus.routeId}</span></td> 
-                                             <td></td><td></td><td></td>
+                                             <td></td>
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td>Next Stop</td>
-                                             <td colspan="2">${bus.stopName}</td> 
-                                             <td></td><td></td>
+                                             <td width="2000"><a class="text-primary">Stop Name</a></td>
+                                             <td width="5000">${bus.stopName}</td> 
                                           </tr>
                                           <tr class="odd gradeC">                                                             
-                                             <td>Direction</td> 
+                                             <td><a class="text-primary">Direction</a></td> 
                                              <td>${bus.direction}</td>
-                                             <td></td><td></td>
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td>Arrival time</td>
+                                             <td><a class="text-primary">Arrive At</a></td>
                                              <td>${bus.predTime}</td> 
-                                             <td></td><td></td>
+                                            
                                           </tr>
                                          <tr class="odd gradeC">
-                                             <td>Waiting time</td>
-                                             <td>${bus.gapTime}&nbsp; min</td> 
-                                             <td></td><td></td>
+                                             <td><a class="text-primary">Waiting Time</a></td>
+                                             <td>${bus.gapTime}&nbsp;Min (s)</td> 
+                                           
                                           </tr>
-                                          <tr class="even gradeC">
-                                             <td>Remind me before 
+                                          <!-- <tr class="even gradeC">
+                                             <td>REMIND ME 
 	                                             
                                              </td>
                                              <td><select class="form-control" style="width:50px;">
@@ -179,9 +177,10 @@
 	                                                <option>5</option>
 	                                                <option>10</option>
 	                                            </select></td>
+	                                            <td>AHEAD</td>
 	                                            <td><button type="button" class="btn btn-info">Notify Me</button></td> 
                                              <td></td><td></td>
-                                          </tr>
+                                          </tr> -->
 	 									 </c:forEach> 
                                 </tbody>
                              </table>

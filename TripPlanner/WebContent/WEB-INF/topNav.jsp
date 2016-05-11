@@ -14,7 +14,7 @@
                         <a href="planTrips.do">TRIP PLANNER</a>
                     </li>
                     <li>
-                        <a href="index.do">TRACK MY BUS</a>
+                        <a href="searchBus.do">TRACK MY BUS</a>
                     </li>
                     <li>
                     	<a href="index.do">NEARBY BUSES</a>
