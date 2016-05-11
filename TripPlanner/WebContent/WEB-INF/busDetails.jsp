@@ -42,7 +42,8 @@
        });
 
         //setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
-        setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
+        setMarkers(stops, map, '<c:url value="/dist/css/busstop.png" />');
+        //setMarkers(stops, map, 'https://d30y9cdsu7xlg0.cloudfront.net/png/98017-200.png');
         setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
        setInterval(function(){
     	   $.post("vehicle-ajax.do", {vid: vid}, function(d){
@@ -54,7 +55,8 @@
     	     	temp.push(parseFloat(d.lon));
     	     	cars.push(temp);
     	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
-    	     	setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
+    	     	//setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
+    	     	setMarkers(stops, map, '<c:url value="/dist/css/busstop.png" />');
     	   });
        }, 20000);
        
@@ -168,6 +170,18 @@
                                              <td>${bus.gapTime}&nbsp;Min (s)</td> 
                                            
                                           </tr>
+                                          <tr class="even gradeC">
+                                             <td><a class="text-primary">Remind me before </a></td>
+                                             <td>5 &nbsp; 10 &nbsp;15</td> 
+                                            
+                                          </tr>
+                                         <tr class="odd gradeC">
+                                             <td><a class="text-primary">Phone Number</a></td>
+                                             <td><input type="text" name="phoneNumber" value=""></input>&nbsp;&nbsp;<button type="button" class="btn btn-primary btn-sm">Notify Me</button></td> 
+                                          
+                                           
+                                          </tr>
+                                          
                                           <!-- <tr class="even gradeC">
                                              <td>REMIND ME 
 	                                             
@@ -230,6 +244,8 @@
         $('#dataTables-example').DataTable({
                 responsive: true
         });
+        
+        
     });
     </script>
 
