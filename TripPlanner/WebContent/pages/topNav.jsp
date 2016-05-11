@@ -5,34 +5,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.jsp"><b>Trip Planner</b></a>
+                <a class="navbar-brand" href="index.jsp"><b>PAAC</b></a>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="planTrips.jsp">Trip Planner</a>
+                    </li>
+                    <li>
+                        <a href="index.do">Bus Tracking</a>
+                    </li>
+                </ul>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
 
                 <!-- /.dropdown -->
 
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-sign-out fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">	
-                        <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">					   
-						<li><a href="login.jsp"><i class="fa fa-sign-in fa-fw"></i> Login</a>
-						</li>						
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
+    
             </ul>

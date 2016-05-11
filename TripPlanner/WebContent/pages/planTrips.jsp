@@ -1,14 +1,51 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Google Maps JavaScript API v3 Example: Transit</title>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    
+    <script src="<c:url value="/bower_components/bootstrap/dist/js/bootstrap.min.js"/>"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<c:url value="/bower_components/metisMenu/dist/metisMenu.min.js"/>"></script>
+    <!-- Custom Theme JavaScript -->
+  	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  	
+    <!-- Bootstrap Core CSS -->
+    <link href="<c:url value="/bower_components/bootstrap/dist/css/bootstrap.min.css" />" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="<c:url value="/bower_components/metisMenu/dist/metisMenu.min.css" />" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="<c:url value="/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" />" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<c:url value="/dist/css/sb-admin-2.css" />" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<c:url value="/bower_components/font-awesome/css/font-awesome.min.css" />" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <script
       src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="http://vitalets.github.io/combodate/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../dist/css/timeForm.css">  
 	<link rel="stylesheet" href="http://vitalets.github.io/combodate/prettify/prettify-bootstrap.css">
 	<link rel="stylesheet" href="http://www.jqueryrain.com/wp-content/plugins/wp-bar/wpbar.css">
 	
@@ -19,128 +56,6 @@
   <script src="https://mc.yandex.ru/metrika/watch.js"></script>
   <script src="../dist/js/combodate.js"></script>
   <script src="http://vitalets.github.io/combodate/prettify/prettify.js"></script>
-    <style type="text/css">
-      html, body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        color: black;
-        font-family: arial,sans-serif;
-        font-size: 13px;
-      }
-	
-/*       #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 50%;
-      } */
-
-      #panel-wpr {
-        position: absolute;
-        top: 30;
-        bottom: 70;
-        left: 0;
-        right: 0;
-        overflow: auto;
-      }
-
-      #panel {
-        font-family: arial;
-        padding: 0 5px;
-      }
-
-      #info {
-        padding: 5px;
-      }
-
-      #from {
-        width: 90%;
-        font-size: 1.2em;
-      }
-      
-      #to {
-        width: 90%;
-        font-size: 1.2em;
-      }
-      .formfield {
-    	vertical-align: middle;
-	  }
-      .adp-directions {
-        width: 100%;
-      }
-
-      .input {
-        background-color: white;
-        padding-left: 8px;
-        border: 1px solid #D9D9D9;
-        border-top: 1px solid silver;
-        -webkit-border-radius: 1px;
-        -moz-border-radius: 1px;
-        border-radius: 1px;
-      }
-
-/*       .time {
-        margin: 0;
-        height: 17px;
-        border: 1px solid;
-        border-top-color: #CCC;
-        border-right-color: #999;
-        border-left-color: #999;
-        border-bottom-color: #CCC;
-        padding: 2px 15px 1px 1px;
-      } */
-
-/*       button {
-        border: 1px solid #3079ED;
-        color: white;
-        background-color: #4D90FE;
-        background-image: -webkit-gradient(linear,left top,left bottom,from(#4D90FE),to(#4787ED));
-          background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
-          background-image: -moz-linear-gradient(top, #4D90FE,#4787ED);
-          background-image: -ms-linear-gradient(top,#4D90FE,#4787ED);
-          background-image: -o-linear-gradient(top,#4D90FE,#4787ED);
-          background-image: linear-gradient(top,#4D90FE, #4787ED);
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4d90fe',EndColorStr='#4787ed');
-          display: inline-block;
-          min-width: 54px;
-          text-align: center;
-          font-weight: bold;
-          padding: 0 8px;
-          line-height: 27px;
-          -webkit-border-radius: 2px;
-          -moz-border-radius: 2px;
-          border-radius: 2px;
-          -webkit-transition: all 0.218s;
-          -moz-transition: all 0.218s;
-          -o-transition: all 0.218s;
-          transition: all 0.218s;
-          } */
-
-        #info div {
-          line-height: 22px;
-          font-size: 110%;
-          }
-
-        .btn {
-        }
-
-        #panel-wpr {
-          border-left: 1px solid #e6e6e6;
-        }
-
-        #info {
-          border-bottom: 1px solid #E6E6E6;
-          margin-bottom: 5px;
-        }
-
-        h2 {
-          margin: 0;
-          padding: 0;
-        }
-
-    </style>
 
     <script>
 /*       var directions = new google.maps.DirectionsService();
@@ -280,124 +195,93 @@
         var autocomplete = new google.maps.places.Autocomplete(inputTo);
         
         autocomplete.bindTo('bounds', map);
-
-/*         transitLayer = new google.maps.TransitLayer();
-
-        var control = document.getElementById('transit-wpr');
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control); */
-
-/*         google.maps.event.addDomListener(control, 'click', function() {
-          transitLayer.setMap(transitLayer.getMap() ? null : map);
-        });
-
-        addDepart();
-        route();
-      } */
-
-/*       function addDepart() {
-        var depart = document.getElementById('depart');
-        for (var i = 0; i < 24; i++) {
-          for (var j = 0; j < 60; j += 15) {
-          var x = i < 10 ? '0' + i : i;
-          var y = j < 10 ? '0' + j : j;
-          depart.innerHTML += '<option>' + x + ':' + y + '</option>';
-        }
-        }
-      } */
-
-/*       function route() {
-        var departure = document.getElementById('depart').value;
-        var bits = departure.split(':');
-        var now = new Date();
-        var tzOffset = (now.getTimezoneOffset() + 60) * 60 * 1000;
-
-        var time = new Date();
-        time.setHours(bits[0]);
-        time.setMinutes(bits[1]);
-
-        var ms = time.getTime() - tzOffset;
-        if (ms < now.getTime()) {
-          ms += 24 * 60 * 60 * 1000;
-        }
-
-        var departureTime = new Date(ms); */
-
-        /* var request = {
-          origin: document.getElementById('from').value,
-          destination: document.getElementById('to').value,
-          travelMode: google.maps.DirectionsTravelMode.TRANSIT,
-          provideRouteAlternatives: true,
-          transitOptions: {
-            departureTime: departureTime
-          }
-        };
-
-        var panel = document.getElementById('panel');
-        panel.innerHTML = '';
-        directions.route(request, function(response, status) {
-          if (status == google.maps.DirectionsStatus.OK) {
-            renderer.setDirections(response);
-            renderer.setMap(map);
-            renderer.setPanel(panel);
-          } else {
-            renderer.setMap(null);
-            renderer.setPanel(null);
-          }
-        });
- */
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-  </head>
-  <body>
-<!--     <div id="transit-wpr">
-      <button id="transit">Toggle transit layer</button>
-    </div> -->
-    <div id="map"></div>
-    <div id="panel-wpr">
-      <div id="info">
-        <div>
-          <h2>Transit directions</h2>
-        </div>
-        <div>
-        	<form role="form" action="planTrips.do" method="POST">
-		        <div> 
-		          <label>From:</label>
-		          <input class="input" name="origin" id="from" value="5000 Forbes Avenue, Pittsburgh, PA, United States">
-		        </div>
-		        <div>
-		          <label>To:</label>
-		          <input class="input" name="destination" id="to" value="">
-		        </div>
-		        <div>
-		        	<label>Departure Time:</label>
-		         	<input type="text" id="depart" data-format="MM-DD-YYYY h:mm a" data-max=2016 data-template="MM / DD / YYYY     hh : mm a" name="departureTime" value="">
+    
+    
+    
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+             <!-- /.navbar-header -->
+            <%@include file="topNav.jsp"%>
+            <!-- /.navbar-top-links -->
+ 
+            <%@include file="leftNav.jsp"%>
+            <!-- /.navbar-static-side -->
+        </nav>
+		
+        <div id="page-wrapper">
+		<div class="row">
+				<br />
+                <div class="col-lg-12">
+                <div id="map"></div>
+                <div ALIGN=CENTER>
+                    <h2>Let's Go Places</h2>
+                </div>
+                <br/>
+                <div>
+	                <form role="form" action="planTrips.do" method="POST">
+	                <div>
+	                    <div class="form-group input-group">
+	                        <span class="input-group-addon">FROM</span>
+<!-- 	                        <input type="text" class="form-control" placeholder="From"> -->
+	                        <input type="text" class="form-control" placeholder="From" name="origin" id="from" value="5000 Forbes Avenue">
+	                    </div>
+	                    <div class="form-group input-group">
+	                        <span class="input-group-addon">&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;</span>
+	                        <input type="text" class="form-control" name="destination" id="to" value="">
+	                    </div>
+	                </div>
+	                <br/>                  
+	                <div ALIGN=CENTER>
+	               		<h4>
+	                        <small>I WANT TO LEAVE AT</small>
+	                    </h4>
+	                    
+			         	<input type="text" id="depart" data-format="MM-DD-YYYY hh:mm a" data-max=2016 data-template="MM / DD / YYYY     hh : mm a" name="departureTime" value="">
 						<script>
 						$(function(){
 						    $('#depart').combodate({minYear: 2016, maxYear: 2016});
 						});
 						var date = new Date();
-						var curTime = dateFormat(date, "mm-dd-yyyy h:MM tt"); 
-						console.log(curTime);
-						/* var curTime = "12-21-2012 8:30 pm"; */
+						var curTime = dateFormat(date, "mm-dd-yyyy hh:MM tt"); 
+						console.log(curTime); 
 						$("#depart").attr("value", curTime);
 						</script>
+			        </div>
+			        <div ALIGN=CENTER>
+			        	<h4>
+	                        <small>I WANT TO ARRIVE AT</small>
+	                    </h4>
+			         	<input type="text" id="arrival" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="arrivalTime" value="">
+							<script>
+							$(function(){
+								$('#arrival').combodate({minYear: 2016, maxYear: 2016}); 
+							});
+							</script>
+			        </div>
+			        <div class="panel-body">
+			       		<button type="submit" class="btn btn-outline btn-primary btn-lg btn-block"><small>GO</small></button>
+			        </div>
+			        </form>
 		        </div>
-		        <div>
-		        	<label>Arrival Time:</label>
-		         	<input type="text" id="arrival" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="arrivalTime" value="">
-						<script>
-						$(function(){
-							$('#arrival').combodate({minYear: 2016, maxYear: 2016}); 
-						});
-						</script>
-		        </div>
-		        <input type="submit" name="action" class="" value="GO">
-		     </form>
-	    </div>  
-      </div>
-      <div id="panel"></div>
-    </div>
-  </body>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+    
+    <!-- /#wrapper -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+</body>
+
 </html>
