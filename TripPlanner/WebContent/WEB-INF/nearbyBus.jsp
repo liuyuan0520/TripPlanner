@@ -85,32 +85,32 @@
             <!-- /.navbar-top-links -->
 
         </nav>
-		
-        <div>
+		<div ALIGN=CENTER>
+                    <h4><small>NEARBY BUSES</small></h4>
+        </div>
+        
 		<div>
                 <div>
                     <div class="panel panel-default">
-                        <div class="panel-heading" ALIGN=CENTER>
-                        	<h4>NEARBY BUSES</h4>
-                        </div>
+                        
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div>
                              <form role="form">
                              	<table class="table table-striped" id="dataTables-example">                   
-                             		<thead>
+                             		<!-- <thead>
                                         <tr>
                                             <th>ROUTE</th>
                                             <th>STOP</th>
                                             <th>DIRECTION</th>
                                             <th></th>
                                         </tr>
-                                    </thead>
+                                    </thead> -->
                              		<tbody>
                                 		<tr>
 											<c:forEach var="bus" items="${busList}">
         										<tr>
-            										<td valign="middle" width="20">${bus.routeId}</td>
+            										<td valign="middle" width="50">${bus.routeId}</td>
             										<td valign="middle" width="300"><a class="text-primary">${bus.stopName}</a></td>
             										<td valign="middle" width="50" >${bus.direction}</td>
             										<td><a href="predict.do?bound=${bus.direction}&bus=${bus.routeId}&busStop=${bus.stopName}" class="btn btn-outline btn-primary">Details</a></td>
@@ -129,6 +129,9 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+        <div ALIGN=CENTER>
+                    <h4><small>CURRENT LOCATION</small></h4>
+        </div>
         <div class="row">
         	<div class="col-lg-12">
         		<div id="map" style="width:100%;height:500px"></div>

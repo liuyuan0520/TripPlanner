@@ -43,7 +43,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <link href="../dist/css/planResults.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/dist/css/planResults.css" />"> 
     <script
       src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <style type="text/css">
