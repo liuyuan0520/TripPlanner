@@ -20,13 +20,12 @@ public class PlanTripsAction extends Action {
 	public String perform(HttpServletRequest request) {
 		String origin = request.getParameter("origin");
 		String destination = request.getParameter("destination");
-		String departureTime = request.getParameter("departureTime");
-		String arrivalTime = request.getParameter("arrivalTime");
+		String time = request.getParameter("time");
+		String bound = request.getParameter("bound");
 
 		System.out.println(origin);
 		System.out.println(destination);
-		System.out.println(departureTime);
-		System.out.println(arrivalTime);
+		System.out.println(time);
 
 		if (origin == null || origin.length() == 0) {
 			origin = "wean hall";
@@ -35,15 +34,18 @@ public class PlanTripsAction extends Action {
 			return "planTrips.jsp";
 		}
 
-		departureTime = convertTime(departureTime);
-		if (arrivalTime != "") {
-			arrivalTime = convertTime(arrivalTime);
+		time = convertTime(time);
+
+		if (bound.equals("departure")) {
+			request.getSession().setAttribute("departureTime", time);
+			request.getSession().setAttribute("arrivalTime", "");
+		} else {
+			request.getSession().setAttribute("departureTime", time);
+			request.getSession().setAttribute("arrivalTime", time);
 		}
 
 		request.getSession().setAttribute("origin", origin);
 		request.getSession().setAttribute("destination", destination);
-		request.getSession().setAttribute("departureTime", departureTime);
-		request.getSession().setAttribute("arrivalTime", arrivalTime);
 
 		return "planTripResults.jsp";
 	}

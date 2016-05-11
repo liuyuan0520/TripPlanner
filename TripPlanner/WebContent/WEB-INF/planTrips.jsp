@@ -238,13 +238,22 @@
 	                        <input type="text" class="form-control" name="destination" id="to" value="">
 	                    </div>
 	                </div>
-	                <br/>                  
+	                <br/> 
 	                <div ALIGN=CENTER>
-	               		<h4>
-	                        <small>I WANT TO LEAVE AT</small>
-	                    </h4>
+	                                    
+											<label class="radio-inline">
+      											<input type="radio" name="bound" value = "departure" checked="checked" />I WANT TO LEAVE AT
+    										</label>
+                                        	<br/>
+											<label class="radio-inline">
+      											<input type="radio" name="bound" value = "arrival" />I WANT TO ARRIVE BY
+    										</label>
+                                        
+                                        </div>                
+	                <div ALIGN=CENTER>
+	               		<br/>
 	                    
-			         	<input type="text" id="depart" data-format="MM-DD-YYYY hh:mm a" data-max=2016 data-template="MM / DD / YYYY     hh : mm a" name="departureTime" value="">
+			         	<input type="text" id="depart" data-format="MM-DD-YYYY hh:mm a" data-max=2016 data-template="MM / DD / YYYY     hh : mm a" name="time" value="">
 						<script>
 						$(function(){
 						    $('#depart').combodate({minYear: 2016, maxYear: 2016});
@@ -254,17 +263,6 @@
 						console.log(curTime); 
 						$("#depart").attr("value", curTime);
 						</script>
-			        </div>
-			        <div ALIGN=CENTER>
-			        	<h4>
-	                        <small>I WANT TO ARRIVE AT</small>
-	                    </h4>
-			         	<input type="text" id="arrival" data-format="MM-DD-YYYY h:mm a" data-template="MM / DD / YYYY     hh : mm a" name="arrivalTime" value="">
-							<script>
-							$(function(){
-								$('#arrival').combodate({minYear: 2016, maxYear: 2016}); 
-							});
-							</script>
 			        </div>
 			        <div class="panel-body">
 			       		<button type="submit" class="btn btn-outline btn-primary btn-lg btn-block"><small>GO</small></button>
