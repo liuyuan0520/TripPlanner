@@ -27,6 +27,7 @@ public class Controller extends HttpServlet {
         Action.add(new VehicleAction());
         Action.add(new TestAction(model));
         Action.add(new PlanTripsAction());
+        Action.add(new ChatAction());
 
     }
 
