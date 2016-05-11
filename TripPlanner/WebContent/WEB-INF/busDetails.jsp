@@ -152,7 +152,7 @@
                                           </tr>
                                           <tr class="even gradeC">
                                              <td>Next Stop</td>
-                                             <td>${bus.stopName}</td> 
+                                             <td colspan="2">${bus.stopName}</td> 
                                              <td></td><td></td>
                                           </tr>
                                           <tr class="odd gradeC">                                                             
