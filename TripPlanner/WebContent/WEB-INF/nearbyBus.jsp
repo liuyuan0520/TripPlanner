@@ -133,7 +133,7 @@
                 <!-- /.col-lg-12 -->
             </div>
         <div ALIGN=CENTER>
-                    <h4><small>CURRENT LOCATION</small></h4>
+                    <h4><small>CURRENT LOCATION & NEARBY BUS STOPS</small></h4>
         </div>
         <div class="row">
         	<div class="col-lg-12">
