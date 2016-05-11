@@ -29,6 +29,7 @@ public class Controller extends HttpServlet {
         Action.add(new PlanTripsAction());
         Action.add(new ChatAction());
         Action.add(new SearchBusAction(model));
+        Action.add(new NotifyAction());
 
     }
 
@@ -102,10 +103,18 @@ public class Controller extends HttpServlet {
 
         // TODO!!!
         if (nextPage.equals("findStops.ajax")) {
-            System.err.println("nextPage = stop.ajax");
+            // System.err.println("nextPage = stop.ajax");
             JSONObject stopsObj = (JSONObject) request.getAttribute("stops");
             // System.err.println("stopObj == null: " + (stopObj == null));
             setResponse(response, stopsObj);
+            return;
+        }
+
+        if (nextPage.equals("notify.ajax")) {
+            // System.err.println("nextPage = stop.ajax");
+            JSONObject resObj = (JSONObject) request.getAttribute("resObj");
+            // System.err.println("stopObj == null: " + (stopObj == null));
+            setResponse(response, resObj);
             return;
         }
 
