@@ -43,6 +43,35 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <%@include file="import.jsp"%>
+    <script>
+  $(function() {
+    var availableTags = [
+    ];
+     <c:forEach var="u" items="${routeId}">
+    	availableTags.push("${u}");
+ 	   </c:forEach> 
+    $("#bus").autocomplete({
+      source: availableTags
+    });
+  });
+  $(document).ready(function() {
+        $("#input_busstop").focus(function(){
+          var dir = $('input:radio:checked').val();//$("input[bound]:checked").val();
+          var route = $("#bus").val();
+          $.post("findstop-ajax.do", {rt: route, dir: dir}, function(d){
+            var availableTags = [
+            ];
+            $.each(d.stops, function(index, item) {
+              availableTags.push(item.stopName);
+            });
+            $("#input_busstop").autocomplete({
+              source: availableTags,
+              minLength: 0
+            });
+          });
+        });
+    });
+  </script>
 </head>
 <body>
 <%@include file="topNav.jsp"%>
