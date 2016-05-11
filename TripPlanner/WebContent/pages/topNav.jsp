@@ -14,7 +14,7 @@
                         <a href="planTrips.jsp">Trip Planner</a>
                     </li>
                     <li>
-                        <a href="index.do">Bus Tracking</a>
+                        <a href="index.do">Find My Bus</a>
                     </li>
                 </ul>
             </div>
