@@ -15,6 +15,7 @@
   	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- Bootstrap Core JavaScript -->
     
+    
     <script src="<c:url value="/bower_components/bootstrap/dist/js/bootstrap.min.js"/>"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<c:url value="/bower_components/metisMenu/dist/metisMenu.min.js"/>"></script>
@@ -90,13 +91,21 @@
                 <div>
                     <div class="panel panel-default">
                         <div class="panel-heading" ALIGN=CENTER>
-                        	NEARBY BUSES
+                        	<h4>NEARBY BUSES</h4>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="dataTable_wrapper">
+                            <div>
                              <form role="form">
-                             	<table class="table table-striped table-hover" id="dataTables-example">                   
+                             	<table class="table table-striped" id="dataTables-example">                   
+                             		<thead>
+                                        <tr>
+                                            <th>ROUTE</th>
+                                            <th>STOP</th>
+                                            <th>DIRECTION</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
                              		<tbody>
                                 		<tr>
 											<c:forEach var="bus" items="${busList}">
