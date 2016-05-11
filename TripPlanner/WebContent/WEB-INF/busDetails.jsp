@@ -54,7 +54,7 @@
     	     	temp.push(parseFloat(d.lon));
     	     	cars.push(temp);
     	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
-    	     	setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+    	     	setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
     	   });
        }, 20000);
        
