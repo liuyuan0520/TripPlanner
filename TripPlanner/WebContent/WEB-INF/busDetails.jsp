@@ -56,7 +56,7 @@
     	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
     	     	setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
     	   });
-       }, 10000);
+       }, 20000);
        
      }
      
@@ -167,7 +167,7 @@
                                           </tr>
                                          <tr class="odd gradeC">
                                              <td>waiting time</td>
-                                             <td>${bus.gapTime}</td> 
+                                             <td>${bus.gapTime}&nbsp; min</td> 
                                              <td></td><td></td><td></td><td></td><td></td>
                                           </tr>
 	 									 </c:forEach> 

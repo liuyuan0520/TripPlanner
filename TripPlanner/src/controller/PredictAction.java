@@ -43,6 +43,7 @@ public class PredictAction extends Action {
         String direction = request.getParameter("bound").trim();
         String stopName = request.getParameter("busStop").trim();
 
+        // System.out.println("i'm here");
         String getAllRoute = null;// request.getParameter("allroutes").trim();
 
         // Get the stop location
@@ -70,8 +71,13 @@ public class PredictAction extends Action {
         } else {
             // search for just this route for this stop
             JSONArray predictions = null;
-            while ((predictions = Common.getPredictions(stopId, route)) == null)
-                ;
+            int count = 0;
+            while ((predictions = Common.getPredictions(stopId, route)) == null) {
+                count++;
+                if (count > 5) {
+                    return "error.jsp";
+                }
+            }
 
             JSONObject jPredict = (JSONObject) predictions.get(0);
             long gapTime = -1;
@@ -110,7 +116,7 @@ public class PredictAction extends Action {
             predList.add(prediction);
         }
         request.setAttribute("busList", predList);
-        return "/pages/busDetails.jsp";
+        return "busDetails.jsp";
     }
 
 }
