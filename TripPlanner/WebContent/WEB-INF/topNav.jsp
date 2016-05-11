@@ -11,10 +11,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="planTrips.do">Trip Planner</a>
+                        <a href="planTrips.do">TRIP PLANNER</a>
                     </li>
                     <li>
-                        <a href="index.do">Find My Bus</a>
+                        <a href="index.do">TRACK MY BUS</a>
+                    </li>
+                    <li>
+                    	<a href="index.do">NEARBY BUSES</a>
                     </li>
                 </ul>
             </div>
