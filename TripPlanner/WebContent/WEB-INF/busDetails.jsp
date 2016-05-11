@@ -54,7 +54,7 @@
     	     	temp.push(parseFloat(d.lon));
     	     	cars.push(temp);
     	     	setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
-    	     	setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+    	     	setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
     	   });
        }, 20000);
        
@@ -148,27 +148,39 @@
                                 	     <c:forEach var="bus" items="${busList}">
 										  <tr class="odd gradeX">                                                            
                                              <td><span class="label label-default">${bus.routeId}</span></td> 
-                                             <td></td><td></td><td></td><td></td><td></td>
+                                             <td></td><td></td><td></td>
                                           </tr>
                                           <tr class="even gradeC">
                                              <td>Next Stop</td>
-                                             <td>${bus.stopName}</td> 
-                                             <td></td><td></td><td></td><td></td><td></td>
+                                             <td colspan="2">${bus.stopName}</td> 
+                                             <td></td><td></td>
                                           </tr>
                                           <tr class="odd gradeC">                                                             
                                              <td>Direction</td> 
                                              <td>${bus.direction}</td>
-                                             <td></td><td></td><td></td><td></td><td></td>
+                                             <td></td><td></td>
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td>arrival time</td>
+                                             <td>Arrival time</td>
                                              <td>${bus.predTime}</td> 
-                                             <td></td><td></td><td></td><td></td><td></td>
+                                             <td></td><td></td>
                                           </tr>
                                          <tr class="odd gradeC">
-                                             <td>waiting time</td>
+                                             <td>Waiting time</td>
                                              <td>${bus.gapTime}&nbsp; min</td> 
-                                             <td></td><td></td><td></td><td></td><td></td>
+                                             <td></td><td></td>
+                                          </tr>
+                                          <tr class="even gradeC">
+                                             <td>Remind me before 
+	                                             
+                                             </td>
+                                             <td><select class="form-control" style="width:50px;">
+	                                                <option>3</option>
+	                                                <option>5</option>
+	                                                <option>10</option>
+	                                            </select></td>
+	                                            <td><button type="button" class="btn btn-info">Notify Me</button></td> 
+                                             <td></td><td></td>
                                           </tr>
 	 									 </c:forEach> 
                                 </tbody>
