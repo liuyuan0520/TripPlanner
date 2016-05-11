@@ -141,7 +141,7 @@ public class IndexAction extends Action {
         request.setAttribute("busList", predList);
         // System.out.println(predList.size());
 
-        return "searchNextBus.jsp";
+        return "nearbyBus.jsp";
 
     }
 

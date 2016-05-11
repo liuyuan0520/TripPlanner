@@ -42,7 +42,7 @@
        });
 
         //setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
-        setMarkers(stops, map, 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png');
+        setMarkers(stops, map, 'https://www.niagararegion.ca/transit/images/bus-marker-icon.png');
         setMarkers(cars, map, 'https://maps.gstatic.com/mapfiles/ms2/micons/bus.png');
        setInterval(function(){
     	   $.post("vehicle-ajax.do", {vid: vid}, function(d){
