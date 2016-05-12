@@ -197,12 +197,12 @@
                                           <script>
                                           $(document).ready(function(){
                                         	  $("#notify-button").click(function(){
-                                        		  var time = $("input:radio[name=time]").val();
+                                        		  var time = $("input:radio[name=time]:checked").val();
                                         		  var phone = $("input:text[name=phoneNumber]").val();
                                         		  //console.log(time + phone);
                                         		  $.post("notify.do", {time:time, phone:phone}, function(d){
                                         			  alert("A message will be sent to your phone " + time + " mins before bus arrives");
-                                        		  });
+                                        		  }); 
                                         		  
                                         	  });
                                         	  
