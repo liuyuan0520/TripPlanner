@@ -144,7 +144,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="dataTable_wrapper">
-                             <form role="form">
+                             
                              <table class="table table-striped table-hover" id="dataTables-example">                   
                                 <tbody>
                                 	     <c:forEach var="bus" items="${busList}">
@@ -170,7 +170,7 @@
                                              <td><a class="text-primary">Remind Me Before</a></td>
                                              <td>
                                              <label class="radio-inline">
-                                             <input type="radio" name="time" value="5" checked />5
+                                             <input type="radio" name="time" value="5" />5
                                              </label>
                                              <label class="radio-inline">
                                              <input type="radio" name="time" value="10" />10
@@ -188,6 +188,14 @@
                                           
                                            
                                           </tr>
+                                          <tr class="even gradeC">
+                                          <td colspan="2">
+                                          <form action="chat.do">
+                                          <button type="submit" class="btn btn-outline btn-primary btn-lg btn-block"><small>Enter Chatting Room</small></button></a>
+                                          </form>
+                                          </td>
+                                          </tr>
+                                          
                                           <script>
                                           $(document).ready(function(){
                                         	  $("#notify-button").click(function(){
@@ -199,6 +207,8 @@
                                         		  });
                                         		  
                                         	  });
+                                        	  
+                                        
                                           });
                                           </script>
                                           
@@ -218,7 +228,6 @@
 	 									 </c:forEach> 
                                 </tbody>
                              </table>
-                             </form>
                             </div>
                             <!-- /.table-responsive -->
                             <div id="map" style="width:100%;height:500px"></div>
