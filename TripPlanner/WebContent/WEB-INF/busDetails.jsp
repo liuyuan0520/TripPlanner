@@ -167,7 +167,7 @@
                                            
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td><a class="text-primary">Remind me before </a></td>
+                                             <td><a class="text-primary">Remind Me Before</a></td>
                                              <td>
                                              <label class="radio-inline">
                                              <input type="radio" name="time" value="5" checked />5
