@@ -222,7 +222,7 @@
                 <div class="col-lg-12">
                 <div id="map"></div>
                 <div ALIGN=CENTER>
-                    <h2>Let's Go Places</h2>
+                    <h2>LET'S GO PLACES</h2>
                 </div>
                 <br/>
                 <div>

@@ -27,7 +27,9 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Chat	</h1>
+                     <div ALIGN=CENTER>
+                    <h2>Chatting Room</h2>
+                </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -36,7 +38,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            View Chat Details
+                            Route 61A
                         </div>
                         <!-- /.panel-heading -->
                         <!-- /.panel-heading -->
@@ -48,13 +50,16 @@
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
+                                            <strong class="primary-font">@PGH_BUS_INFO</strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                                <i class="fa fa-clock-o fa-fw"></i> 5/1 04:17
                                             </small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                           RIDER ADVISORY:<br/>
+Forbes and Fifth will be closed because of Pittsburgh Marathon. Expect delays!
+
+
                                         </p>
                                     </div>
                                 </li>
@@ -65,11 +70,11 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                <i class="fa fa-clock-o fa-fw"></i>5/7 16:29</small>
+                                            <strong class="pull-right primary-font">Flu</strong>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            I'm at Craig and Center. Why no bus is coming? I'm meeting my girlfriend Alice in 10 mins. I'll be a dead man if I can't be there on time.
                                         </p>
                                     </div>
                                 </li>
@@ -79,12 +84,12 @@
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
+                                            <strong class="primary-font">Yuan</strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+                                                <i class="fa fa-clock-o fa-fw"></i> 5/7 16:40</small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                           @Flu You idiot, 61A doesn't stop there!
                                         </p>
                                     </div>
                                 </li>
@@ -95,11 +100,11 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                <i class="fa fa-clock-o fa-fw"></i> 5/9 11:30</small>
+                                            <strong class="pull-right primary-font">Pangzi Huang</strong>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            I'm going to hang out with Li Ge today. Excited! I think we are meant to be for each other. I'm feeling very 66666666
                                         </p>
                                     </div>
                                 </li>
