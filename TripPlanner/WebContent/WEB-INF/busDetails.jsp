@@ -37,7 +37,7 @@
 
      function initMap() {
        map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 14,
+         zoom: 12,
          center: {lat: thisLat, lng: thisLng}
        });
 
@@ -153,8 +153,8 @@
                                              <td>${bus.direction}</td>
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td width="2000"><a class="text-primary">Stop Name</a></td>
-                                             <td width="5000">${bus.stopName}</td> 
+                                             <td width="250"><a class="text-primary">Stop Name</a></td>
+                                             <td width="500">${bus.stopName}</td> 
                                           </tr>
                                           <%-- <tr class="even gradeC">
                                              <td><a class="text-primary">Arrive At</a></td>
@@ -167,7 +167,7 @@
                                            
                                           </tr>
                                           <tr class="even gradeC">
-                                             <td><a class="text-primary">Remind me before </a></td>
+                                             <td><a class="text-primary">Remind Me</a></td>
                                              <td>
                                              <label class="radio-inline">
                                              <input type="radio" name="time" value="5" />5
@@ -175,10 +175,8 @@
                                              <label class="radio-inline">
                                              <input type="radio" name="time" value="10" />10
                                              </label>
-                                             <label class="radio-inline">
-                                             <input type="radio" name="time" value="15" />15
-                                             </label>
-                                             &nbsp; Mins
+                                             
+                                             &nbsp; min (s) in advance.
                                              </td> 
                                             
                                           </tr>
