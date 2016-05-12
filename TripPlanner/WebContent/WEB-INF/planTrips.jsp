@@ -44,18 +44,18 @@
     <![endif]-->
     <script
       src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!--     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
 	<link rel="stylesheet" href="<c:url value="/dist/css/timeForm.css" />">  
 <!-- 	<link rel="stylesheet" href="http://vitalets.github.io/combodate/prettify/prettify-bootstrap.css">
 	<link rel="stylesheet" href="http://www.jqueryrain.com/wp-content/plugins/wp-bar/wpbar.css"> -->
 	
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!--   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
   <script src="http://vitalets.github.io/combodate/momentjs/moment.min.2.5.0.js"></script>
-  <script src="http://platform.twitter.com/widgets.js"></script>
-  <script src="https://mc.yandex.ru/metrika/watch.js"></script>
+<!--   <script src="http://platform.twitter.com/widgets.js"></script>
+  <script src="https://mc.yandex.ru/metrika/watch.js"></script> -->
   <script src="<c:url value="/dist/js/combodate.js" />"></script>
-  <script src="http://vitalets.github.io/combodate/prettify/prettify.js"></script>
+<!--   <script src="http://vitalets.github.io/combodate/prettify/prettify.js"></script> -->
 
     <script>
 /*       var directions = new google.maps.DirectionsService();

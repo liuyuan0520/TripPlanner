@@ -176,7 +176,7 @@
                                              <input type="radio" name="time" value="10" />10
                                              </label>
                                              
-                                             &nbsp; min (s) in advance.
+                                             &nbsp; minutes in advance.
                                              </td> 
                                             
                                           </tr>
