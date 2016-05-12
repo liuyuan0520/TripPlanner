@@ -95,42 +95,6 @@ public class Common {
 	}
 
 	/**
-	 * Get all prediction buses by stop id
-	 * 
-	 * @param stopId
-	 * @return
-	 */
-	public static JSONArray getPrediction(String stopId) {
-		// API:http://truetime.portauthority.org/bustime/api/v2/getpredictions?key=Bethdfzqb5sLpVWvwcCgaYutX&format=json&stpid=34
-		/*
-		 * "tmstmp": "20160505 23:28", "typ": "A", "stpnm":
-		 * "Fifth Ave at Bigelow Blvd", "stpid": "34", "vid": "6042", "dstp":
-		 * 4458, "rt": "61A", "rtdd": "61A", "rtdir": "INBOUND", "des":
-		 * "Downtown", "prdtm": "20160505 23:32", "tablockid": "061A-184",
-		 * "tatripid": "6525", "dly": false, "prdctdn": "3", "zone": ""
-		 */
-		HttpURLConnection connection = null;
-		URL url;
-		try {
-			url = new URL("http://truetime.portauthority.org/bustime/" + "api/v2/getpredictions?key=" + KEY + "&stpid="
-					+ stopId + "&format=json");
-
-			connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("GET");
-
-			JSONObject obj = (JSONObject) JSONValue.parse(Common.getResponse(connection));
-			JSONObject results = (JSONObject) obj.get("bustime-response");
-			JSONArray predictions = (JSONArray) results.get("prd");
-			return predictions;
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
 	 * Get one route prediction to some one stop
 	 * 
 	 * @param stopId
