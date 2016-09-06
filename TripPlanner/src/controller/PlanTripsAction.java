@@ -3,6 +3,7 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,7 @@ public class PlanTripsAction extends Action {
 		String origin = request.getParameter("origin");
 		String destination = request.getParameter("destination");
 		String time = request.getParameter("time");
+		System.out.println(time);
 		String bound = request.getParameter("bound");
 
 		System.out.println(origin);
@@ -52,8 +54,7 @@ public class PlanTripsAction extends Action {
 
 	private String convertTime(String time) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy h:mm a");
-		// sdf.setTimeZone(TimeZone.getTimeZone("EST"));
-
+		sdf.setTimeZone(TimeZone.getTimeZone("PRT"));
 		Date date = new Date();
 		try {
 			date = sdf.parse(time);

@@ -86,7 +86,7 @@
 
         </nav>
 		<div ALIGN=CENTER>
-                    <h4><small>NEARBY BUSES</small></h4>
+                    <h4><small>ROUTES AROUND YOU</small></h4>
         </div>
         
 		<div>

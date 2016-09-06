@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-lg-12">
                      <div ALIGN=CENTER>
-                    <h2>Chatting Room</h2>
+                    <h2>INFO ROOM</h2>
                 </div>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -38,7 +38,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Route 61A
+                          
                         </div>
                         <!-- /.panel-heading -->
                         <!-- /.panel-heading -->
@@ -74,7 +74,7 @@ Forbes and Fifth will be closed because of Pittsburgh Marathon. Expect delays!
                                             <strong class="pull-right primary-font">Flu</strong>
                                         </div>
                                         <p>
-                                            I'm at Craig and Center. Why no bus is coming? I'm meeting my girlfriend Alice in 10 mins. I'll be a dead man if I can't be there on time.
+                                            I'm at Morewood and Center. Why no bus is coming? OMG, I'm meeting Alice in 5 minutes. She will kill me!
                                         </p>
                                     </div>
                                 </li>
@@ -89,7 +89,7 @@ Forbes and Fifth will be closed because of Pittsburgh Marathon. Expect delays!
                                                 <i class="fa fa-clock-o fa-fw"></i> 5/7 16:40</small>
                                         </div>
                                         <p>
-                                           @Flu You idiot, 61A doesn't stop there!
+                                           @Flu You fool, this bus doesn't stop there!
                                         </p>
                                     </div>
                                 </li>

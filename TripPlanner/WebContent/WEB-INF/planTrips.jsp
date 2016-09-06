@@ -51,10 +51,11 @@
 	
 <!--   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
-  <script src="http://vitalets.github.io/combodate/momentjs/moment.min.2.5.0.js"></script>
+  <!-- <script src="http://vitalets.github.io/combodate/momentjs/moment.min.2.5.0.js"></script> -->
 <!--   <script src="http://platform.twitter.com/widgets.js"></script>
   <script src="https://mc.yandex.ru/metrika/watch.js"></script> -->
   <script src="<c:url value="/dist/js/combodate.js" />"></script>
+  <script src="<c:url value="/dist/js/plan.js" />"></script>
 <!--   <script src="http://vitalets.github.io/combodate/prettify/prettify.js"></script> -->
 
     <script>
@@ -231,7 +232,7 @@
 	                    <div class="form-group input-group">
 	                        <span class="input-group-addon">FROM</span>
 <!-- 	                        <input type="text" class="form-control" placeholder="From"> -->
-	                        <input type="text" class="form-control" placeholder="From" name="origin" id="from" value="5000 Forbes Avenue">
+	                        <input type="text" class="form-control" placeholder="5000 Forbes Avenue" name="origin" id="from" value="">
 	                    </div>
 	                    <div class="form-group input-group">
 	                        <span class="input-group-addon">&nbsp;&nbsp;TO&nbsp;&nbsp;&nbsp;</span>

@@ -8,6 +8,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author Yuan Liu
+ * @date 05/09/2016
+ */
+
 public abstract class Action {
 	// Returns the name of the action, used to match the request in the hash
 	// table

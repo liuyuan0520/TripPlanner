@@ -13,7 +13,8 @@
         </init-param>
         <init-param>
             <param-name>    jdbcURL                 </param-name> 
-            <param-value>   jdbc:mysql:///test      </param-value>
+            <param-value>   jdbc:mysql://127.0.0.1:3306/task13?user=root     </param-value>
+            
         </init-param>
     </servlet>
 

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 
+/**
+ * @author Yuan Liu
+ * @date 05/09/2016
+ */
 public class NotifyAction extends Action {
 
 	@Override

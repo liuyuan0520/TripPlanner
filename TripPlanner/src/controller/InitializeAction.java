@@ -12,6 +12,10 @@ import model.DAO;
 import model.Model;
 import util.Common;
 
+/**
+ * @author Yuan Liu
+ * @date 05/09/2016
+ */
 public class InitializeAction extends Action {
 
 	private DAO dao;

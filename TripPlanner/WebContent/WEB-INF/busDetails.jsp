@@ -162,8 +162,8 @@
                                             
                                           </tr> --%>
                                          <tr class="odd gradeC">
-                                             <td><a class="text-primary">Waiting Time</a></td>
-                                             <td>${bus.gapTime}&nbsp;Min (s)</td> 
+                                             <td><a class="text-primary">Arrival Time</a></td>
+                                             <td>${bus.predTime} (After ${bus.gapTime} Minutes)</td> 
                                            
                                           </tr>
                                           <tr class="even gradeC">
@@ -176,7 +176,7 @@
                                              <input type="radio" name="time" value="10" />10
                                              </label>
                                              
-                                             &nbsp; minutes in advance.
+                                             &nbsp;Minutes In Advance.
                                              </td> 
                                             
                                           </tr>
@@ -189,7 +189,7 @@
                                           <tr class="even gradeC">
                                           <td colspan="2">
                                           <form action="chat.do">
-                                          <button type="submit" class="btn btn-outline btn-primary btn-lg btn-block"><small>Enter Chatting Room</small></button></a>
+                                          <button type="submit" class="btn btn-outline btn-primary btn-lg btn-block"><small>Enter Info Room</small></button></a>
                                           </form>
                                           </td>
                                           </tr>
